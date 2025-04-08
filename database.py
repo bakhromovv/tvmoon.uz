@@ -36,7 +36,6 @@ async def insert_data():
     movie_genres = {
     "uz": {
         "action": "Jangari Kinolar",
-        "hictorical": "Tarixiy Kinolar",
         "crime": "Kriminal kinolar",
         "comedy": "Komediya Kinolar",
         "drama": "Drama Kinolar",
@@ -46,12 +45,12 @@ async def insert_data():
         "adventures": "Sarguzasht Kinolar",
         "romantic": "Romantik Kinolar",
         "fantasy": "Fantastik Kinolar",
+        "hictorical": "Tarixiy Kinolar",
         "zombi": "Zombi Kinolar"
     },
     
     "ru": {
         "action": "Боевики",
-        "historical": "Исторические",
         "crime": "Криминальный",
         "comedy": "Комедии",
         "drama": "Драмы",
@@ -61,6 +60,7 @@ async def insert_data():
         "adventures": "Приключения",
         "romantic": "Романтические",
         "fantasy": "Фантастические",
+        "historical": "Исторические",
         "zombi": "Зомби"
     },
 
@@ -76,6 +76,7 @@ async def insert_data():
         "adventures": "Adventures Movies",
         "romantic": "Romantic Movies",
         "fantasy": "Fantasy Movies",
+        "historical": "Historical Movies",
         "zombi": "Zombi Movies"
     },
   
@@ -83,7 +84,7 @@ async def insert_data():
     movie_list = {
     "uz": {
         "action": ["Telba Max - https://uzmovi.tv/tarjima-kinolarri/6287-telba-aqlsiz-maks-max-furiosa-dostoni-uzbek-ozbek-tilida.html", "Jon Uik - http://asilmedia.org/7189-jon-uik-uzbek-ozbek-tilida-tas-ix-skachat-download.html","O`qdan tez - http://asilmedia.org/14491-oqdan-tez-tezkor-oqlar-bred-pitt-ishtirokida-uzbek-tilida-2022-ozbekcha-tarjima-film-full-hd-skachat.html","Betman Qora ritser - http://asilmedia.org/8580-betmen-jokerga-qarshi-qora-ritsar-temnyy-rycar-betmen-protiv-dzhokera-hd-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Gladiator - http://asilmedia.org/7922-gladiator-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Muqqadima - https://asilmedia.org/10761-muqaddima-uzbek-tilida-2010-ozbek-tarjima-kino-hd.html"],
-        "crime": ["Gentelmanlar - https://uzmovii.com/tarjima-kinolar/126-jentelmenlar-uzbek-tilida.html","U.N.C.L.E. agentlari - http://asilmedia.org/8362-ankl-agentlari-agenty-ankl-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Jango - http://asilmedia.org/10979-ozod-jango-uzbek-tilida-2012-ozbekcha-tarjima-kino-hd.html"," hurmatsiz urush vazirligi - https://uzbeklar.tv/8921-nojentelmencha-ishlar-vazirligi.html","chandig' yuz - https://m.ok.ru/video/6692364618463","Cho`qintirgan ota - https://yandex.ru/video/preview/12097537868097486232" ],
+        "crime": ["Gentelmanlar - https://uzmovii.com/tarjima-kinolar/126-jentelmenlar-uzbek-tilida.html","U.N.C.L.E. agentlari - http://asilmedia.org/8362-ankl-agentlari-agenty-ankl-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Jango - http://asilmedia.org/10979-ozod-jango-uzbek-tilida-2012-ozbekcha-tarjima-kino-hd.html"," hurmatsiz urush vazirligi - https://uzbeklar.tv/8921-nojentelmencha-ishlar-vazirligi.html","chandig' yuz - https://m.ok.ru/video/6692364618463","Cho`qintirgan ota - https://yandex.ru/video/preview/12097537868097486232", "Rango - http://asilmedia.org/13137-rango-uzbek-tilida-multfilm-2011-ozbek-tarjima-kino-hd.html", "Oushenning 11 do'sti - http://asilmedia.org/12590-oushenning-11-dosti-uzbek-tilida-2001-ozbekcha-tarjima-kino-hd.html", "Oushenning 12 do`sti - https://yandex.ru/video/preview/16777860511480528578", "Oushenning 13 do`sti - https://yandex.ru/video/preview/15550270963068814589 "],
         "comedy": ["Ajoyib dostlar - https://yandex.ru/video/preview/10235573619305627702", "Tig`iz payt - http://asilmedia.org/2673-tigiz-payt-chas-pik.html","Ahmoqdan ahmoqroq - https://yandex.ru/video/preview/5240208174658768640","Birodarlar - https://yandex.ru/video/preview/16829949076606585980", "Ko`rkam va semiz  - https://yandex.ru/video/preview/1736019921186315022", "Ace Ventura - http://asilmedia.org/7912-eys-ventura-super-komediya-uzbek-ozbek-tilida-tas-ix-skachat-download.html", "Niqob - http://asilmedia.org/10008-niqob-uzbek-tilida-1994-hd-ozbek-tarjima-tas-ix-skachat.html"],
         "drama": ["Showshankdan Qochish - https://asilmedia.org/7540-shoushenkdan-qochsih-uzbek-ozbek-tilida-tas-ix-skachat-download.html", "Forrest Gump - https://kinolar.tv/load/komedija/forrest_gamp_uzbek_tilida_1994_kino_skachat_fhd/17-1-0-5107", "Qoidalarsiz o'yin - http://asilmedia.org/11423-qoidalarsiz-oyin-girrom-oyin-uzbek-tilida-2010-ozbekcha-tarjima-kino-hd.html", "yashil maskan - https://yandex.ru/video/preview/14249570244539021863", "Metin Iroda ovi - https://yandex.ru/video/preview/16491320964520153494", "Shindler ro'yxati - https://yandex.ru/video/preview/10833520297864770630", "Baxt izlab - https://yandex.ru/video/preview/8775926908991309239"],
         "horror": ["Lanat - https://yandex.ru/video/preview/1645476799433543386", "Ono - http://asilmedia.org/10770-u-u-1-ono-1-ozbekcha-subtitr-uzbek-tilida-2017-ozbek-tarjima-kino-hd.html", "Exorcist - http://asilmedia.org/15250-ekzorsist-vatikan-jin-chiqaruvchisi-ujas-kino-uzbek-tilida-2023-ozbekcha-tarjima-kino-hd.html",  " Babaduk - https://yandex.ru/video/preview/2788913059885672821", "Astral - https://yandex.ru/video/preview/3203663039931224226", "Sinister dahshati - https://uzmovi.co/tarjima-kinolar/1082-sinister-1-uzbek-tilida.html"],
@@ -98,7 +99,7 @@ async def insert_data():
 
     "ru": {
         "action": ["Безумный Макс - http://yandex.ru/video/preview/12034942780454102348"," Джон Уик - https://yandex.ru/video/preview/10641844962732418263 ","быстрее пули - https://yandex.ru/video/preview/6153522411346263997 ","Черный рыцарь Бетмана - https://yandex.ru/video/preview/2608680403987910967","Гладиатор - https://yandex.ru/video/preview/2414603818404336508"," Начало - https://yandex.ru/video/preview/15093385460223896238",],
-        "crime": ["джентльмены - https://gs.yandex.com.tr/video/preview/17819407072991987256","Тренировочный день - https://yandex.ru/video/preview/7159021825940912955","Агенты А.Н.К.Л. - https://yandex.ru/video/preview/7279781807746823381", "Джанго освобожденный - https://yandex.ru/video/preview/11709251018688485847","Министерство неджентльменской войны - https://yandex.ru/video/preview/523427015548618537", "Лицо со шрамом - https://yandex.ru/video/preview/6533275534218334170", "Крёстный отец - https://yandex.ru/video/preview/7258750674900658372", "Ранго - https://yandex.ru/video/preview/18277364762141317136"],
+        "crime": ["джентльмены - https://gs.yandex.com.tr/video/preview/17819407072991987256","Тренировочный день - https://yandex.ru/video/preview/7159021825940912955","Агенты А.Н.К.Л. - https://yandex.ru/video/preview/7279781807746823381", "Джанго освобожденный - https://yandex.ru/video/preview/11709251018688485847","Министерство неджентльменской войны - https://yandex.ru/video/preview/523427015548618537", "Лицо со шрамом - https://yandex.ru/video/preview/6533275534218334170", "Крёстный отец - https://yandex.ru/video/preview/7258750674900658372", "Ранго - https://yandex.ru/video/preview/18277364762141317136","Одиннадцать друзей Оушена - https://yandex.ru/video/preview/3751495479645036652", "Двенадцать друзей Оушена - https://yandex.ru/video/preview/4299694579810320961", "Тринадцать друзей Оушена - https://yandex.ru/video/preview/6211305443910286383"],
         "comedy": ["мальчик в вегасе - https://yandex.ru/video/preview/10235573619305627702"," SuperПерцы - https://yandex.ru/video/preview/8730584173425568302","час пик - https://yandex.ru/video/preview/16560468121289408783"," тупой еще тупее - https://yandex.ru/video/preview/14520068193249061166"," сводный братья - https://yandex.ru/video/preview/16829949076606585980","мачо и ботан - https://yandex.ru/video/preview/1736019921186315022"," Эйс Вентура - https://yandex.ru/video/preview/8402094611903032656","маска - https://yandex.ru/video/preview/16577272776041814523"],
         "drama": ["Побег из Шоушенка - https://yandex.ru/video/preview/16281330000920821396", "Форрест Гамп - https://yandex.ru/video/preview/286161629633046129","Крестный отец - https://yandex.ru/video/preview/7258750674900658372", "Игры разума - https://yandex.ru/video/preview/8205493610281887211", "зеленая мыля -  https://yandex.ru/video/preview/5503041099233749159", "Умница Уилл Хантинг - https://yandex.ru/video/preview/7068238162444269956", "Список Шиндлера - https://yandex.ru/video/preview/1747846058158849525", "В поисках счастья - https://yandex.ru/video/preview/6875455071189281063"],
         "horror": ["проклятие - https://yandex.ru/video/preview/16789063793990413949", "оно - https://yandex.ru/video/preview/13601113100241636869", "ужас на улице Вязов - https://yandex.ru/video/preview/11142835794257013205", "Экзорцист - https://yandex.ru/video/preview/7014508484003974921", "Реинкарнация - https://yandex.ru/video/preview/16778655416784443214", "Бабадук - https://yandex.ru/video/preview/11073019934273019617", "астрал  - https://yandex.ru/video/preview/2491590929854220076", "Синистер  - https://yandex.ru/video/preview/6644946582230537249"],
@@ -113,7 +114,7 @@ async def insert_data():
 
     "en": {
         "action": ["Mad Max - https://inoriginal.net/films/234-mad-max-fury-road-2015.html " ,"John Wick - https://inoriginal.net/films/460-john-wick-2014.html", "Bullet Train - https://inoriginal.net/films/715-bullet-train-2022.html","The Dark Knight - https://inoriginal.net/films/397-the-dark-knight-2008.html","Gladiator - https://inoriginal.net/films/1346-gladiator-2000.html","Inception - https://inoriginal.net/films/206-inception-2010.html"],
-        "crime": ["Gentelman - https://www.imdb.com/title/tt8367814/?ref_=ext_shr_lnk","Trainin day - https://inoriginal.net/films/1798-training-day-2001.html","The Man from U.N.C.L.E. - https://inoriginal.net/films/659-the-man-from-u-n-c-l-e-2015.html","Django - https://inoriginal.net/films/149-django-unchained-2012.html","ministry of ungentlemanly warfare - https://www.imdb.com/title/tt5177120/?ref_=ext_shr_lnk","scarface - https://inoriginal.net/films/961-scarface-1983.html","The Godfather - https://inoriginal.net/films/609-the-godfather-1972.html","Rango - https://inoriginal.net/films/140-rango-2011.html" ],
+        "crime": ["Gentelman - https://www.imdb.com/title/tt8367814/?ref_=ext_shr_lnk","Trainin day - https://inoriginal.net/films/1798-training-day-2001.html","The Man from U.N.C.L.E. - https://inoriginal.net/films/659-the-man-from-u-n-c-l-e-2015.html","Django - https://inoriginal.net/films/149-django-unchained-2012.html","ministry of ungentlemanly warfare - https://www.imdb.com/title/tt5177120/?ref_=ext_shr_lnk","scarface - https://inoriginal.net/films/961-scarface-1983.html","The Godfather - https://inoriginal.net/films/609-the-godfather-1972.html","Rango - https://inoriginal.net/films/140-rango-2011.html", "Ocean eleven - https://inoriginal.net/films/781-ocean-s-eleven-2001.html", "Ocean twelve - https://inoriginal.net/films/2120-ocean-s-twelve-2004.html", "Oceans thirteen - https://inoriginal.net/films/2283-ocean-s-thirteen-2007.html" ],
         "comedy": ["The Hangover - https://inoriginal.net/films/1927-the-hangover-2009.html", "Superbad - https://inoriginal.net/films/1175-superbad-2007.html", "Rush Hour - https://inoriginal.net/films/846-rush-hour-1998.html","Dumb and Dumber - https://inoriginal.net/films/907-dumb-and-dumber-1994.html", "Step Brothers - https://www.imdb.com/title/tt0838283/?ref_=ext_shr_lnk", "21 Jump Street - https://inoriginal.net/films/1606-21-jump-street-2012.html", "Ace Ventura - https://inoriginal.net/films/2009-ace-ventura-pet-detective-1993.html", "Mask - https://inoriginal.net/films/428-the-mask-1994.html"],
         "drama": ["The Shawshank Redemption - https://inoriginal.net/films/799-the-shawshank-redemption-1994.html", "Forrest Gump - https://inoriginal.net/films/166-forrest-gump-1994.html", "A Beautiful Mind - https://inoriginal.net/films/54-a-beautiful-mind-2001.html", "The Green Mile - https://inoriginal.net/films/413-the-green-mile-1999.html", "Good Will Hunting - https://inoriginal.net/films/650-good-will-hunting-1997.html", "Schindler’s List - https://www.imdb.com/title/tt0108052/?ref_=ext_shr_lnk", "The Pursuit of Happyness - https://inoriginal.net/films/797-the-pursuit-of-happyness-2006.html","Scent of a Woman - https://inoriginal.net/films/333-scent-of-a-woman-1992.html"],
         "horror": ["The Conjuring - https://inoriginal.net/films/841-the-conjuring-2013.html", "It - https://www.imdb.com/title/tt1396484/?ref_=ext_shr_lnk ", "A Nightmare on Elm Street - https://www.imdb.com/title/tt1179056/?ref_=ext_shr_lnk", "The Exorcist - https://www.imdb.com/title/tt5368542/?ref_=ext_shr_lnk", "Hereditary - https://inoriginal.net/films/818-hereditary-2018.html", "The Babadook - https://inoriginal.net/films/2292-the-babadook-2014.html", "Insidious - https://inoriginal.net/films/2567-insidious-2010.html", "Sinister - https://inoriginal.net/films/4581-sinister-2-2015.html"],
@@ -125,7 +126,6 @@ async def insert_data():
         "historical": ["Braveheart - https://inoriginal.net/films/114-braveheart-1995.html", "Troy - https://inoriginal.net/films/640-troy-2004.html", "King Arthur: Legend of the sword - https://inoriginal.net/films/1329-king-arthur-legend-of-the-sword-2017.html", "The pianists - https://inoriginal.net/films/794-the-pianist-2002.html"],
         "zombi": ["World War Z - https://inoriginal.net/films/355-world-war-z-2013.html", "Resident Evil - https://inoriginal.net/films/106-resident-evil-apocalypse-2004.html", "28 Days Later - https://inoriginal.net/films/31-28-days-later-2002.html", "Dawn of the Dead - https://inoriginal.net/films/1181-dawn-of-the-dead-2004.html", "Zombieland - https://inoriginal.net/films/696-zombieland-2009.html", "Army of the Dead - https://inoriginal.net/films/73-army-of-the-dead-2021.html", "I Am Legend - https://inoriginal.net/?story=I+Am+Legend&do=search&subaction=search"]
     },
-
 
 }
 
