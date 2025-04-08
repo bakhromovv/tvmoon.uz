@@ -36,7 +36,6 @@ async def insert_data():
        movie_genres = {
     "uz": {
         "action": "Jangari Kinolar",
-        "hictorical": "Tarixiy Kinolar",
         "crime": "Kriminal kinolar",
         "comedy": "Komediya Kinolar",
         "drama": "Drama Kinolar",
@@ -46,12 +45,12 @@ async def insert_data():
         "adventures": "Sarguzasht Kinolar",
         "romantic": "Romantik Kinolar",
         "fantasy": "Fantastik Kinolar",
+        "hictorical": "Tarixiy Kinolar",
         "zombi": "Zombi Kinolar"
     },
     
     "ru": {
         "action": "Боевики",
-        "historical": "Исторические",
         "crime": "Криминальный",
         "comedy": "Комедии",
         "drama": "Драмы",
@@ -61,12 +60,12 @@ async def insert_data():
         "adventures": "Приключения",
         "romantic": "Романтические",
         "fantasy": "Фантастические",
+        "historical": "Исторические",
         "zombi": "Зомби"
     },
 
         "en": {
         "action": "Action Movies",
-        "historical": "Historical Movies",
         "crime": "Crime Movies",
         "comedy": "Comedy Movies",
         "drama": "Drama Movies",
@@ -76,6 +75,7 @@ async def insert_data():
         "adventures": "Adventures Movies",
         "romantic": "Romantic Movies",
         "fantasy": "Fantasy Movies",
+        "historical": "Historical Movies",
         "zombi": "Zombi Movies"
     },
   
