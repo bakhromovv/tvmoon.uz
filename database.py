@@ -45,7 +45,7 @@ async def insert_data():
         "adventures": "Sarguzasht Kinolar",
         "romantic": "Romantik Kinolar",
         "fantasy": "Fantastik Kinolar",
-        "hictorical": "Tarixiy Kinolar",
+        "historical": "Tarixiy Kinolar",
         "zombi": "Zombi Kinolar"
     },
     
@@ -66,7 +66,6 @@ async def insert_data():
 
         "en": {
         "action": "Action Movies",
-        "historical": "Historical Movies",
         "crime": "Crime Movies",
         "comedy": "Comedy Movies",
         "drama": "Drama Movies",
@@ -161,14 +160,14 @@ async def insert_data():
         "Drama": ["Vorislik - https://www.kinopoisk.ru/series/986788/", "Suits - https://rutube.ru/plst/882733/" , "Chernobil - http://asilmedia.org/9252-chernobil-chernobyl-serial-uzbek-tilida-2019-hd-ozbek-tarjima-tas-ix-skachat.html", "Panjara ortida - http://asilmedia.org/5687-panjara-ortida-pobeg-iz-tyurmy-prison-break-fasl-1-qismlar-1-22-jami-22.html "]
     },    
     "ru": {
-        "Криминал/Триллер": ["Во все тяжкие - https://rutube.ru/plst/362343/", "Лучше звоните Солу - https://rutube.ru/plst/422294/", "Нарко - https://rutube.ru/plst/337759/", "Острые козырьки - https://rutube.ru/plst/336313/", "Бумажный дом - https://rutube.ru/plst/338189/", "Карточный домик - https://rutube.ru/plst/385210/", "Побег - https://rutube.ru/plst/394021/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Ричер - https://rutube.ru/plst/350617/"],
-        "Фантастика/Фэнтези": ["Игра престолов - https://www.kinopoisk.ru/series/464963/", "Очень странные дела - https://rutube.ru/plst/363538/", "Алиса в Пограничье - https://rutube.ru/plst/349405/", "Пацаны - https://rutube.ru/plst/337761/", "Локи - https://rutube.ru/plst/415973/", "Одни из нас - https://rutube.ru/plst/616438/", "Игра в кальмара - https://rutube.ru/plst/333276/", "Академия Амбрелла - https://rutube.ru/plst/367214/"],
-        "Комедия": ["Друзья - https://rutube.ru/plst/336529/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Форс-мажоры - https://rutube.ru/plst/882733/"],
-        "Драма": ["Наследники - https://www.kinopoisk.ru/series/986788/", "Форс-мажоры - https://rutube.ru/plst/882733/", "Чернобыль - https://hd.kinopoisk.ru/ru-uz/film/4a736aa840d5a895a94448a999495906", "Побег - https://rutube.ru/plst/394021/"]
+        "Crime/Thrille": ["Во все тяжкие - https://rutube.ru/plst/362343/", "Лучше звоните Солу - https://rutube.ru/plst/422294/", "Нарко - https://rutube.ru/plst/337759/", "Острые козырьки - https://rutube.ru/plst/336313/", "Бумажный дом - https://rutube.ru/plst/338189/", "Карточный домик - https://rutube.ru/plst/385210/", "Побег - https://rutube.ru/plst/394021/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Ричер - https://rutube.ru/plst/350617/"],
+        "Sci-Fi/Fantasy": ["Игра престолов - https://www.kinopoisk.ru/series/464963/", "Очень странные дела - https://rutube.ru/plst/363538/", "Алиса в Пограничье - https://rutube.ru/plst/349405/", "Пацаны - https://rutube.ru/plst/337761/", "Локи - https://rutube.ru/plst/415973/", "Одни из нас - https://rutube.ru/plst/616438/", "Игра в кальмара - https://rutube.ru/plst/333276/", "Академия Амбрелла - https://rutube.ru/plst/367214/"],
+        "Comedy": ["Друзья - https://rutube.ru/plst/336529/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Форс-мажоры - https://rutube.ru/plst/882733/"],
+        "Drama": ["Наследники - https://www.kinopoisk.ru/series/986788/", "Форс-мажоры - https://rutube.ru/plst/882733/", "Чернобыль - https://hd.kinopoisk.ru/ru-uz/film/4a736aa840d5a895a94448a999495906", "Побег - https://rutube.ru/plst/394021/"]
     },
     "en": {
         "Crime/Thriller": ["Breaking Bad - https://inoriginal.net/series/432-breaking-bad-2008.html", "Better Call Saul - https://inoriginal.net/series/1228-better-call-saul-2015.html", "Narcos - https://www.imdb.com/title/tt2707408/?ref_=ext_shr_lnk", "Peaky Blinders - https://inoriginal.net/series/431-peaky-blinders-2013.html", "Money Heist - https://inoriginal.net/series/4645-money-heist-2017.html","House of Cards - https://inoriginal.net/series/1338-house-of-cards-2013.html", "Prison Break - https://inoriginal.net/series/1893-prison-break-2005.html", "Dexter - https://inoriginal.net/series/1170-dexter-2006.html", "The Gentelman - https://www.imdb.com/title/tt13210838/?ref_=ext_shr_lnk","Reacher - https://inoriginal.net/series/2204-reacher-2022.html"],
-        "Sci-Fi/Fantasy": ["Game of Thrones - https://www.imdb.com/title/tt0944947/?ref_=ext_shr_lnk", "Stranger Things - https://inoriginal.net/series/489-stranger-things-2016.html", "Alice in Borderland - https://www.imdb.com/title/tt10795658/?ref_=ext_shr_lnk", "The Boys - https://inoriginal.net/series/1086-the-boys-2019.html", "Loki - https://inoriginal.net/series/1125-loki-2021.html","The Last of Us - https://inoriginal.net/series/410-the-last-of-us-2023.html", "Squid Game - https://inoriginal.net/series/1114-squid-game-2021.html","The Umbrella Academy - https://inoriginal.net/series/1156-the-umbrella-academy-2019.html"],
+        "Sci-Fi/Fantasy": ["Game of Thrones - https://www.imdb.com/title/tt0944947/?ref_=ext_shr_lnk", "Stranger Things - https://inoriginal.net/series/489-stranger-things-2016.html", "Alice in Borderland - https://www.imdb.com/title/tt10795658/?ref_=ext_shr_lnk", "The Boys - https://inoriginal.net/series/1086-the-boys-2019.html", "Loki - https://inoriginal.net/series/1125-loki-2021.html", "The Last of Us - https://inoriginal.net/series/410-the-last-of-us-2023.html", "Squid Game - https://inoriginal.net/series/1114-squid-game-2021.html", "The Umbrella Academy - https://inoriginal.net/series/1156-the-umbrella-academy-2019.html"],
         "Comedy": ["Friends - https://inoriginal.net/series/356-friends-1994.html", "Dexter - https://inoriginal.net/series/1170-dexter-2006.html", " The Gentelman - https://www.imdb.com/title/tt13210838/?ref_=ext_shr_lnk", "Suits - https://inoriginal.net/series/2074-suit-2011.html","Prison Break - https://inoriginal.net/series/1893-prison-break-2005.html"],
         "Drama": ["Succession - https://inoriginal.net/series/1133-succession-2018.html", "Suits - https://inoriginal.net/series/2074-suit-2011.html" , "Chernobyl - https://inoriginal.net/series/730-chernobyl-2019.html"]
     }
