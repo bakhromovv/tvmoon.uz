@@ -5,10 +5,18 @@ from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State
 import database
+from aiogram.fsm.state import StatesGroup, State
+from aiogram.fsm.storage.memory import MemoryStorage
+
+storage = MemoryStorage()
+dp = Dispatcher(storage=storage)
+
+class FeedbackStates(StatesGroup):
+    waiting_for_feedback = State()
 
 API_TOKEN = '7383378706:AAEHT3fKEW7DT3AsV5JsqMxH5S00bzPaFZs'
 bot = Bot(token=API_TOKEN)
-dp = Dispatcher()
+
 
 user_languages = {}
 
@@ -38,7 +46,6 @@ async def start(message: types.Message):
     )
 
     reply_markup = ReplyKeyboardMarkup(resize_keyboard=True, keyboard=[
-        [KeyboardButton(text="/start")],
         [KeyboardButton(text="/serial"), KeyboardButton(text="/kino")]
     ])
 
@@ -179,19 +186,10 @@ async def handle_genre_selection(call: CallbackQuery):
     await call.message.edit_text(messages[language], reply_markup=markup)
 
 
-@dp.message(Command("search"))
-async def search_movie(message: types.Message):
-    query = message.text.replace('/search', '').strip().lower()
+@dp.message(F.text.regexp(r"(?i)^(?!\/).{3,}$"))
+async def plain_text_search(message: types.Message):
+    query = message.text.strip().lower()
     language = user_languages.get(message.from_user.id, "uz")
-
-    if not query:
-        messages = {
-            "uz": "🔎 Iltimos, qidirayotgan kino yoki serial nomini kiriting.\n\n Masalan: /search Titanik",
-            "ru": "🔎 Пожалуйста, введите название фильма или сериала.\n\n например: /search Титаник ",
-            "en": "🔎 Please enter the name of the movie or series.\n\n For example: /search Titanic"
-        }
-        await message.answer(messages[language])
-        return
 
     results = await database.search_movies_and_series(language, query)
 
@@ -208,11 +206,12 @@ async def search_movie(message: types.Message):
         result_text = response_messages[language]["found"] + "\n\n".join(unique_results)
         await message.answer(result_text)
 
-         # Adminga habar
+    # Adminga habar
     await bot.send_message(
         chat_id=ADMIN_ID,
-        text=f"🔍 @{message.from_user.username or message.from_user.full_name} (ID: {message.from_user.id}) qidiruv berdi: {query}"
+        text=f"🔍 @{message.from_user.username or message.from_user.full_name} (ID: {message.from_user.id}) matnli qidiruv berdi: {query}"
     )
+
 
 
 @dp.message(Command("kino"))
@@ -272,43 +271,66 @@ async def help_command(message: types.Message):
     await message.answer(messages[language])
 
 
+@dp.message(Command("myid", "profile"))
+async def show_profile(message: types.Message):
+    user_id = message.from_user.id
+    language = user_languages.get(user_id, "uz")
+
+    lang_display = {
+        "uz": "O'zbek 🇺🇿",
+        "ru": "Русский 🇷🇺",
+        "en": "English 🇺🇸"
+    }
+
+    await message.answer(
+        f"🆔 ID: `{user_id}`\n"
+        f"🌐 Tanlangan til: {lang_display.get(language, 'Noma’lum')}",
+        parse_mode="Markdown"
+    )
+
+@dp.message(Command("language"))
+async def change_language(message: types.Message):
+    inline_markup = InlineKeyboardMarkup(inline_keyboard=[
+        [InlineKeyboardButton(text="O'zbek🇺🇿", callback_data="uz")],
+        [InlineKeyboardButton(text="Русский🇷🇺", callback_data="ru"),
+         InlineKeyboardButton(text="English🇺🇸", callback_data="en")]
+    ])
+
+    await message.answer(
+        "🌐 Iltimos, yangi tilni tanlang:\nВыберите новый язык:\nPlease choose a new language:",
+        reply_markup=inline_markup
+    )
 
 # /request komandasiga javob
 @dp.message(Command("request"))
 async def request_feedback(message: types.Message, state: FSMContext):
     language = user_languages.get(message.from_user.id, "uz")
-    
     messages = {
         "uz": "Taklif va Fikirlaringizni yozib qoldiring:",
         "ru": "Оставьте свои предложения и мнения:",
         "en": "Leave your suggestions and opinions:"
     }
-    
-    # Foydalanuvchiga fikr yozishni so'rash
     await message.answer(messages[language])
-    
-    # State-ni belgilash, feedback kutish
-    await state.set_state(waiting_for_feedback)  # Use FSMContext to set the 
+    await state.set_state(FeedbackStates.waiting_for_feedback)
 
 # Fikrni olish
-@dp.message(F.state == waiting_for_feedback)
+@dp.message(F.state == FeedbackStates.waiting_for_feedback)
 async def handle_feedback(message: types.Message, state: FSMContext):
-    # Fikrni olish
     user_feedback = message.text
-    
-    # Adminga yuborish
-    admin_id = ADMIN_ID  # Admin ID sini kiriting
-    await bot.send_message(admin_id, f"Foydalanuvchi {message.from_user.full_name} ({message.from_user.id}) taklif yoki kamchilik yubordi:\n{user_feedback}")
-
-    await message.answer("Sizning taklif yoki kamchiliklaringiz admin bilan bo'lishildi. Rahmat!")
-
-    await state.clear()  # State-ni tozalash
+    await bot.send_message(
+        chat_id=ADMIN_ID,
+        text=f"📩 Yangi fikr:\n👤 @{message.from_user.username or message.from_user.full_name} (ID: {message.from_user.id})\n\n📝 {user_feedback}"
+    )
+    await message.answer("✅ Fikringiz adminlarga yuborildi. Rahmat!")
+    await state.clear()
 
 
 async def main():
     await on_startup()
-    await dp.start_polling(bot)
 
+    dp.message.register(handle_feedback, F.state == FeedbackStates.waiting_for_feedback)
+
+    await dp.start_polling(bot)
 
 if __name__ == "__main__":
     asyncio.run(main())
