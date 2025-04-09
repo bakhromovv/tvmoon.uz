@@ -63,8 +63,8 @@ async def insert_data():
         "historical": "Исторические",
         "zombi": "Зомби"
     },
-
-        "en": {
+        
+    "en": {
         "action": "Action Movies",
         "crime": "Crime Movies",
         "comedy": "Comedy Movies",
@@ -160,7 +160,7 @@ async def insert_data():
         "Drama": ["Vorislik - https://www.kinopoisk.ru/series/986788/", "Suits - https://rutube.ru/plst/882733/" , "Chernobil - http://asilmedia.org/9252-chernobil-chernobyl-serial-uzbek-tilida-2019-hd-ozbek-tarjima-tas-ix-skachat.html", "Panjara ortida - http://asilmedia.org/5687-panjara-ortida-pobeg-iz-tyurmy-prison-break-fasl-1-qismlar-1-22-jami-22.html "]
     },    
     "ru": {
-        "Crime/Thrille": ["Во все тяжкие - https://rutube.ru/plst/362343/", "Лучше звоните Солу - https://rutube.ru/plst/422294/", "Нарко - https://rutube.ru/plst/337759/", "Острые козырьки - https://rutube.ru/plst/336313/", "Бумажный дом - https://rutube.ru/plst/338189/", "Карточный домик - https://rutube.ru/plst/385210/", "Побег - https://rutube.ru/plst/394021/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Ричер - https://rutube.ru/plst/350617/"],
+        "Crime/Thriller": ["Во все тяжкие - https://rutube.ru/plst/362343/", "Лучше звоните Солу - https://rutube.ru/plst/422294/", "Нарко - https://rutube.ru/plst/337759/", "Острые козырьки - https://rutube.ru/plst/336313/", "Бумажный дом - https://rutube.ru/plst/338189/", "Карточный домик - https://rutube.ru/plst/385210/", "Побег - https://rutube.ru/plst/394021/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Ричер - https://rutube.ru/plst/350617/"],
         "Sci-Fi/Fantasy": ["Игра престолов - https://www.kinopoisk.ru/series/464963/", "Очень странные дела - https://rutube.ru/plst/363538/", "Алиса в Пограничье - https://rutube.ru/plst/349405/", "Пацаны - https://rutube.ru/plst/337761/", "Локи - https://rutube.ru/plst/415973/", "Одни из нас - https://rutube.ru/plst/616438/", "Игра в кальмара - https://rutube.ru/plst/333276/", "Академия Амбрелла - https://rutube.ru/plst/367214/"],
         "Comedy": ["Друзья - https://rutube.ru/plst/336529/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Форс-мажоры - https://rutube.ru/plst/882733/"],
         "Drama": ["Наследники - https://www.kinopoisk.ru/series/986788/", "Форс-мажоры - https://rutube.ru/plst/882733/", "Чернобыль - https://hd.kinopoisk.ru/ru-uz/film/4a736aa840d5a895a94448a999495906", "Побег - https://rutube.ru/plst/394021/"]
