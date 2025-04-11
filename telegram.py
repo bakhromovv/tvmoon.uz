@@ -178,7 +178,7 @@ async def handle_genre_selection(call: CallbackQuery):
         InlineKeyboardButton(text=buttons_text[language]["cancel"], callback_data="cancel")
     ])
 
-      messages = {
+    messages = {
         "uz": "Mavjud kinolar:",
         "ru": "Доступные фильмы:",
         "en": "Available movies:"
