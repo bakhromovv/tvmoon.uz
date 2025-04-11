@@ -178,12 +178,14 @@ async def handle_genre_selection(call: CallbackQuery):
         InlineKeyboardButton(text=buttons_text[language]["cancel"], callback_data="cancel")
     ])
 
-    messages = {
-        "uz": f"🎬 Kino janri: {genre_key}",
-        "ru": f"🎬 Фильмы в жанре {genre_key}",
-        "en": f"🎬 Movies in the {genre_key} genre"
+      messages = {
+        "uz": "Mavjud kinolar:",
+        "ru": "Доступные фильмы:",
+        "en": "Available movies:"
     }
     await call.message.edit_text(messages[language], reply_markup=markup)
+
+
 @dp.message(F.text.regexp(r"(?i)^(?!\/).{3,}$"))
 async def plain_text_search(message: types.Message):
     query = message.text.strip().lower()
