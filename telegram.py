@@ -74,13 +74,14 @@ async def show_main_menu(call: CallbackQuery):
     await call.message.edit_text(messages[language], reply_markup=markup)
 
 
+# Serial janrini tanlash
 @dp.callback_query(F.data == "category_series")
 async def show_series_selection(call: CallbackQuery):
     language = user_languages.get(call.from_user.id, "uz")
     genres = await database.get_series_genres(language)
     markup = InlineKeyboardMarkup(
         inline_keyboard=[[InlineKeyboardButton(text=name, callback_data=f"series_{key}")]
-                         for key, name in genres.items()]
+        for key, name in genres.items()]
     )
     messages = {
         "uz": "Serial janrini tanlang:",
@@ -105,12 +106,17 @@ async def handle_series_selection(call: CallbackQuery):
         await call.answer(messages[language], show_alert=True)
         return
 
+    # Filtrlangan tugmalar yaratish
     markup = InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text=title.strip(), url=link.strip())]
-                         for s in set(series) if (parts := s.split(" - ")) and len(parts) == 2
-                         for title, link in [parts]]
+        inline_keyboard=[
+            [InlineKeyboardButton(text=title.strip(), url=link.strip())]
+            for s in set(series)
+            if (parts := s.split(" - ")) and len(parts) == 2 and parts[1].strip()  # URL bo‘sh bo‘lmasin
+            for title, link in [parts]
+        ]
     )
 
+    # Foydalanuvchi uchun tugmalar
     buttons_text = {
         "uz": {"back": "⬅ Orqaga", "cancel": "❌ Bekor qilish"},
         "ru": {"back": "⬅ Назад", "cancel": "❌ Отмена"},
@@ -130,13 +136,13 @@ async def handle_series_selection(call: CallbackQuery):
     await call.message.edit_text(messages[language], reply_markup=markup)
 
 
-@dp.callback_query(F.data == "category_movies")
-async def show_genre_selection(call: CallbackQuery):
+@dp.callback_query(F.data == "category_movie")
+async def show_movie_selection(call: CallbackQuery):
     language = user_languages.get(call.from_user.id, "uz")
     genres = await database.get_movie_genres(language)
     markup = InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text=name, callback_data=f"genre_{key}")]
-                         for key, name in genres.items()]
+        inline_keyboard=[[InlineKeyboardButton(text=name, callback_data=f"movie_{key}")]
+        for key, name in genres.items()]
     )
     messages = {
         "uz": "Kino janrini tanlang:",
@@ -145,9 +151,8 @@ async def show_genre_selection(call: CallbackQuery):
     }
     await call.message.edit_text(messages[language], reply_markup=markup)
 
-
 @dp.callback_query(F.data.startswith("genre_"))
-async def handle_genre_selection(call: CallbackQuery):
+async def handle_movie_selection(call: CallbackQuery):
     genre_key = call.data.split("_")[1]
     language = user_languages.get(call.from_user.id, "uz")
     movies = await database.get_movies_by_genre(language, genre_key)
@@ -161,12 +166,17 @@ async def handle_genre_selection(call: CallbackQuery):
         await call.answer(messages[language], show_alert=True)
         return
 
+    # Filtrlangan kinolarni tugmalar bilan yaratish
     markup = InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text=title.strip(), url=link.strip())]
-                         for m in set(movies) if (parts := m.split(" - ")) and len(parts) == 2
-                         for title, link in [parts]]
+        inline_keyboard=[
+            [InlineKeyboardButton(text=title.strip(), url=link.strip())]
+            for m in set(movies)
+            if (parts := m.split(" - ")) and len(parts) == 2 and parts[1].strip()  # URL bo‘sh bo‘lmasin
+            for title, link in [parts]
+        ]
     )
 
+    # Foydalanuvchi uchun tugmalar
     buttons_text = {
         "uz": {"back": "⬅ Orqaga", "cancel": "❌ Bekor qilish"},
         "ru": {"back": "⬅ Назад", "cancel": "❌ Отмена"},
@@ -174,18 +184,16 @@ async def handle_genre_selection(call: CallbackQuery):
     }
 
     markup.inline_keyboard.append([
-        InlineKeyboardButton(text=buttons_text[language]["back"], callback_data="category_movies"),
+        InlineKeyboardButton(text=buttons_text[language]["back"], callback_data="category_movie"),
         InlineKeyboardButton(text=buttons_text[language]["cancel"], callback_data="cancel")
     ])
 
     messages = {
-        "uz": f"🎬 Kino janri: {genre_key}",
-        "ru": f"🎬 Фильмы в жанре {genre_key}",
-        "en": f"🎬 Movies in the {genre_key} genre"
+        "uz": "Mavjud kinolar:",
+        "ru": "Доступные фильмы:",
+        "en": "Available movies:"
     }
     await call.message.edit_text(messages[language], reply_markup=markup)
-
-
 @dp.message(F.text.regexp(r"(?i)^(?!\/).{3,}$"))
 async def plain_text_search(message: types.Message):
     query = message.text.strip().lower()
