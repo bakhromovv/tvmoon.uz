@@ -29,6 +29,10 @@ async def create_db():
             genre_key TEXT,
             series_name TEXT
         );
+        CREATE TABLE IF NOT EXISTS users (
+            user_id INTEGER PRIMARY KEY,
+            language TEXT
+        );
         """)
         await db.commit()
 
@@ -202,6 +206,24 @@ async def insert_data():
                                      (lang, genre_key, series_name))
 
         await db.commit()
+
+
+# Foydalanuvchining tanlagan tilini saqlash
+async def save_user_language(user_id: int, lang: str):
+    async with aiosqlite.connect(DB_NAME) as db:
+        await db.execute(
+            "INSERT INTO users (user_id, language) VALUES (?, ?) "
+            "ON CONFLICT(user_id) DO UPDATE SET language = excluded.language",
+            (user_id, lang)
+        )
+        await db.commit()
+
+# Foydalanuvchining tilini olish
+async def get_user_language(user_id: int) -> str:
+    async with aiosqlite.connect(DB_NAME) as db:
+        cursor = await db.execute("SELECT language FROM users WHERE user_id = ?", (user_id,))
+        row = await cursor.fetchone()
+        return row[0] if row else "uz"  # Agar yo‘q bo‘lsa default uz
 
 async def get_movie_genres(language):
     async with aiosqlite.connect(DB_NAME) as db:
