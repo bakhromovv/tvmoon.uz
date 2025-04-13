@@ -15,7 +15,7 @@ class FeedbackStates(StatesGroup):
 import database
 
 
-API_TOKEN = '7383378706:AAEHT3fKEW7DT3AsV5JsqMxH5S00bzPaFZs'
+API_TOKEN = '7742824465:AAH0HRBLGiYldRG4MUN8lLkx5FLEgm4-0Y4'
 bot = Bot(token=API_TOKEN)
 
 
@@ -30,12 +30,14 @@ async def on_startup():
 
 @dp.message(Command("start"))
 async def start(message: types.Message):
+    user_languages[message.from_user.id] = "uz"  # 🔧 Default til: O'zbek
+
     inline_markup = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(text="O'zbek🇺🇿", callback_data="uz")],
         [InlineKeyboardButton(text="Русский🇷🇺", callback_data="ru"),
          InlineKeyboardButton(text="English🇺🇸", callback_data="en")]
-         
     ])
+
     await bot.send_message(
         chat_id=ADMIN_ID,
         text=f"👤 Foydalanuvchi @{message.from_user.username or message.from_user.full_name} (ID: {message.from_user.id}) botni ishga tushirdi."
@@ -53,11 +55,10 @@ async def start(message: types.Message):
     await message.answer("@TvMoonuz_bot", reply_markup=reply_markup)
 
 
-@dp.callback_query(F.data.in_("uz ru en".split()))
+@dp.callback_query(F.data.in_(["uz", "ru", "en"]))
 async def handle_language_selection(call: CallbackQuery):
     user_languages[call.from_user.id] = call.data
     await show_main_menu(call)
-
 
 async def show_main_menu(call: CallbackQuery):
     language = user_languages.get(call.from_user.id, "uz")
@@ -187,12 +188,45 @@ async def handle_genre_selection(call: CallbackQuery):
     await call.message.edit_text(messages[language], reply_markup=markup)
 
 
+def latin_to_cyrillic(text):
+    replacements = {
+        "ya": "я", "yu": "ю", "yo": "ё", "ch": "ч", "sh": "ш", "o'": "ў", "g'": "ғ", "e": "э",
+        "a": "а", "b": "б", "d": "д", "f": "ф", "g": "г", "h": "ҳ", "i": "и", "j": "ж", "k": "к",
+        "l": "л", "m": "м", "n": "н", "o": "о", "p": "п", "q": "қ", "r": "р", "s": "с", "t": "т",
+        "u": "у", "v": "в", "x": "х", "y": "й", "z": "з"
+    }
+    for latin, cyrillic in sorted(replacements.items(), key=lambda x: -len(x[0])):
+        text = text.replace(latin, cyrillic)
+    return text
+
+def cyrillic_to_latin(text):
+    replacements = {
+        "я": "ya", "ю": "yu", "ё": "yo", "ч": "ch", "ш": "sh", "ў": "o'", "ғ": "g'", "э": "e",
+        "а": "a", "б": "b", "д": "d", "ф": "f", "г": "g", "ҳ": "h", "и": "i", "ж": "j", "к": "k",
+        "л": "l", "м": "m", "н": "n", "о": "o", "п": "p", "қ": "q", "р": "r", "с": "s", "т": "t",
+        "у": "u", "в": "v", "х": "x", "й": "y", "з": "z"
+    }
+    for cyrillic, latin in sorted(replacements.items(), key=lambda x: -len(x[0])):
+        text = text.replace(cyrillic, latin)
+    return text
+
+
+
 @dp.message(F.text.regexp(r"(?i)^(?!\/).{3,}$"))
 async def plain_text_search(message: types.Message):
-    query = message.text.strip().lower()
+    query = message.text.strip().lower()  # Qidiruvni kichik harflarga aylantiramiz
     language = user_languages.get(message.from_user.id, "uz")
 
+    # Transliteratsiyalar
+    query_latin = cyrillic_to_latin(query)
+    query_cyrillic = latin_to_cyrillic(query)
+
+    # Har uch variantda qidiruv: asl, lotin, kirill
     results = await database.search_movies_and_series(language, query)
+    if not results:
+        results = await database.search_movies_and_series(language, query_cyrillic)
+    if not results:
+        results = await database.search_movies_and_series(language, query_latin)
 
     response_messages = {
         "uz": {"found": "🔍 Natijalar:\n", "not_found": "😕 Hech narsa topilmadi."},
@@ -207,11 +241,12 @@ async def plain_text_search(message: types.Message):
         result_text = response_messages[language]["found"] + "\n\n".join(unique_results)
         await message.answer(result_text)
 
-    # Adminga habar
+    # Admin log
     await bot.send_message(
         chat_id=ADMIN_ID,
         text=f"🔍 @{message.from_user.username or message.from_user.full_name} (ID: {message.from_user.id}) matnli qidiruv berdi: {query}"
     )
+
 
 
 @dp.message(Command("kino"))
