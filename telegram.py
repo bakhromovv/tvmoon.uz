@@ -15,7 +15,7 @@ class FeedbackStates(StatesGroup):
 import database
 
 
-API_TOKEN = '7742824465:AAH0HRBLGiYldRG4MUN8lLkx5FLEgm4-0Y4'
+API_TOKEN = '7383378706:AAEHT3fKEW7DT3AsV5JsqMxH5S00bzPaFZs'
 bot = Bot(token=API_TOKEN)
 
 
