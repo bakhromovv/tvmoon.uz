@@ -50,7 +50,8 @@ async def insert_data():
         "romantic": "Romantik Kinolar",
         "fantasy": "Fantastik Kinolar",
         "historical": "Tarixiy Kinolar",
-        "zombi": "Zombi Kinolar"
+        "zombi": "Zombi Kinolar",
+        "marvel": "Marvel"
     },
     
     "ru": {
@@ -65,9 +66,10 @@ async def insert_data():
         "romantic": "Романтические",
         "fantasy": "Фантастические",
         "historical": "Исторические",
-        "zombi": "Зомби"
+        "zombi": "Зомби",
+        "marvel": "Марвел"
     },
-        
+
     "en": {
         "action": "Action Movies",
         "crime": "Crime Movies",
@@ -80,14 +82,16 @@ async def insert_data():
         "romantic": "Romantic Movies",
         "fantasy": "Fantasy Movies",
         "historical": "Historical Movies",
-        "zombi": "Zombi Movies"
+        "zombi": "Zombi Movies", 
+        "marvel": "Marvel"
     },
   
 }
     movie_list = {
     "uz": {
         "action": ["Telba Max - https://uzmovi.tv/tarjima-kinolarri/6287-telba-aqlsiz-maks-max-furiosa-dostoni-uzbek-ozbek-tilida.html", "Jon Uik - http://asilmedia.org/7189-jon-uik-uzbek-ozbek-tilida-tas-ix-skachat-download.html","O`qdan tez - http://asilmedia.org/14491-oqdan-tez-tezkor-oqlar-bred-pitt-ishtirokida-uzbek-tilida-2022-ozbekcha-tarjima-film-full-hd-skachat.html","Betman Qora ritser - http://asilmedia.org/8580-betmen-jokerga-qarshi-qora-ritsar-temnyy-rycar-betmen-protiv-dzhokera-hd-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Gladiator - http://asilmedia.org/7922-gladiator-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Muqqadima - https://asilmedia.org/10761-muqaddima-uzbek-tilida-2010-ozbek-tarjima-kino-hd.html"],
-        "crime": ["Gentelmanlar - https://uzmovii.com/tarjima-kinolar/126-jentelmenlar-uzbek-tilida.html","U.N.C.L.E. agentlari - http://asilmedia.org/8362-ankl-agentlari-agenty-ankl-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Jango - http://asilmedia.org/10979-ozod-jango-uzbek-tilida-2012-ozbekcha-tarjima-kino-hd.html"," hurmatsiz urush vazirligi - https://uzbeklar.tv/8921-nojentelmencha-ishlar-vazirligi.html","chandig' yuz - https://m.ok.ru/video/6692364618463","Cho`qintirgan ota - https://yandex.ru/video/preview/12097537868097486232", "Rango - http://asilmedia.org/13137-rango-uzbek-tilida-multfilm-2011-ozbek-tarjima-kino-hd.html", "Oushenning 11 do'sti - http://asilmedia.org/12590-oushenning-11-dosti-uzbek-tilida-2001-ozbekcha-tarjima-kino-hd.html", "Oushenning 12 do`sti - https://yandex.ru/video/preview/16777860511480528578", "Oushenning 13 do`sti - https://yandex.ru/video/preview/15550270963068814589 "],
+        "crime": ["Gentelmanlar - https://uzmovii.com/tarjima-kinolar/126-jentelmenlar-uzbek-tilida.html","U.N.C.L.E. agentlari - http://asilmedia.org/8362-ankl-agentlari-agenty-ankl-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Jango - http://asilmedia.org/10979-ozod-jango-uzbek-tilida-2012-ozbekcha-tarjima-kino-hd.html"," hurmatsiz urush vazirligi - https://uzbeklar.tv/8921-nojentelmencha-ishlar-vazirligi.html",
+        "chandig' yuz - https://m.ok.ru/video/6692364618463","Cho`qintirgan ota - https://yandex.ru/video/preview/12097537868097486232", "Rango - http://asilmedia.org/13137-rango-uzbek-tilida-multfilm-2011-ozbek-tarjima-kino-hd.html", "Oushenning 11 do'sti - http://asilmedia.org/12590-oushenning-11-dosti-uzbek-tilida-2001-ozbekcha-tarjima-kino-hd.html", "Oushenning 12 do`sti - https://yandex.ru/video/preview/16777860511480528578", "Oushenning 13 do`sti - https://yandex.ru/video/preview/15550270963068814589 "],
         "comedy": ["Ajoyib dostlar - https://yandex.ru/video/preview/10235573619305627702", "Tig`iz payt - http://asilmedia.org/2673-tigiz-payt-chas-pik.html","Ahmoqdan ahmoqroq - https://yandex.ru/video/preview/5240208174658768640","Birodarlar - https://yandex.ru/video/preview/16829949076606585980", "Ko`rkam va semiz  - https://yandex.ru/video/preview/1736019921186315022", "Ace Ventura - http://asilmedia.org/7912-eys-ventura-super-komediya-uzbek-ozbek-tilida-tas-ix-skachat-download.html", "Niqob - http://asilmedia.org/10008-niqob-uzbek-tilida-1994-hd-ozbek-tarjima-tas-ix-skachat.html"],
         "drama": ["Showshankdan Qochish - https://asilmedia.org/7540-shoushenkdan-qochsih-uzbek-ozbek-tilida-tas-ix-skachat-download.html", "Forrest Gump - https://kinolar.tv/load/komedija/forrest_gamp_uzbek_tilida_1994_kino_skachat_fhd/17-1-0-5107", "Qoidalarsiz o'yin - http://asilmedia.org/11423-qoidalarsiz-oyin-girrom-oyin-uzbek-tilida-2010-ozbekcha-tarjima-kino-hd.html", "yashil maskan - https://yandex.ru/video/preview/14249570244539021863", "Metin Iroda ovi - https://yandex.ru/video/preview/16491320964520153494", "Shindler ro'yxati - https://yandex.ru/video/preview/10833520297864770630", "Baxt izlab - https://yandex.ru/video/preview/8775926908991309239"],
         "horror": ["Lanat - https://yandex.ru/video/preview/1645476799433543386", "Ono - http://asilmedia.org/10770-u-u-1-ono-1-ozbekcha-subtitr-uzbek-tilida-2017-ozbek-tarjima-kino-hd.html", "Exorcist - http://asilmedia.org/15250-ekzorsist-vatikan-jin-chiqaruvchisi-ujas-kino-uzbek-tilida-2023-ozbekcha-tarjima-kino-hd.html",  " Babaduk - https://yandex.ru/video/preview/2788913059885672821", "Astral - https://yandex.ru/video/preview/3203663039931224226", "Sinister dahshati - https://uzmovi.co/tarjima-kinolar/1082-sinister-1-uzbek-tilida.html"],
@@ -97,7 +101,8 @@ async def insert_data():
         "romantic": ["Mag'rurlik va Xurofot - https://yandex.ru/video/preview/9088161923029610950", "La La Land - http://asilmedia.org/8478-la-la-lend-zheleznyy-chelovek-3-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Yulduzlar Aybi - https://yandex.ru/video/preview/17276876668447674446","Noting Hill - https://yandex.ru/video/preview/15200152430813361107"," Men Sizdan Nafratlanadigan 10 Narsa - https://yandex.ru/video/preview/7971243644093620662", "Asl Sevgi - http://asilmedia.org/7448-asl-sevgi-uzbek-ozbek-tilida-tas-ix-skachat-download.html", "Benjamin Button - https://uzmovii.org/tarjima-kinolar/5443-benjamin-buttonning-qiziq-voqeasi-uzbek-tilida.html"],
         "fantasy": ["Uzuklar Humdori - https://asilmedia.org/4349-uzuklar-hukmdori-1-ozbek-tilida.html", "Garri Potter - http://asilmedia.org/9060-garri-potter-1-hikmatlar-toshi-uzbek-tarjima-2001-hd-ozbek-tilida-tas-ix-skachat.html", "Narniya Saltanati - https://yandex.ru/video/preview/7015118863288643731","Alisa mojizalar mamlakatida - https://yandex.ru/video/preview/12202391922250238400", "Samoviy yo`l - https://yandex.ru/video/preview/12659530076485604669", "Pan labirint - https://yandex.ru/video/preview/1216798461472116672", "Xobbit - http://asilmedia.org/3242-hobbit-ozbek-tilida.html", "Persi Jekson - https://yandex.ru/video/preview/14563292618104779272","labirintdagilar - https://yandex.ru/video/preview/11183099952095180430"],
         "historical": ["Sher yurak - https://yandex.ru/video/preview/13874830699191377098", "Troya - http://asilmedia.org/8396-troya-troya-full-hd-uzbek-ozbek-tilida-tas-ix-skachat-download.html", "Kolovrat afsonasi - https://yandex.ru/video/preview/9401807074145557352", "Qirol Arturning qilichi - https://yandex.ru/video/preview/8902174865404653965", "Pianinachi - https://tas-ix.media/films/melodrama/7551-pianist.html"],
-        "zombi": ["Z jahon urushi - https://yandex.ru/video/preview/17869777242893002046", "Yovuzlik maskani - https://yandex.ru/video/preview/16851678046823618734", "Pusanga  ketyotgan poyezd - https://yandex.ru/video/preview/1058089952645602086", "28 kundan keyin - https://yandex.ru/video/preview/207721904695828637", "O‘liklar tongi - https://yandex.ru/video/preview/16160611712617596589",  "Zombilend - https://yandex.ru/video/preview/9861466346593021887", "O‘liklar armiyasi - https://yandex.ru/video/preview/10916926107580855028","Men afsonaman - https://yandex.ru/video/preview/5671921437243688738"]
+        "zombi": ["Z jahon urushi - https://yandex.ru/video/preview/17869777242893002046", "Yovuzlik maskani - https://yandex.ru/video/preview/16851678046823618734", "Pusanga  ketyotgan poyezd - https://yandex.ru/video/preview/1058089952645602086", "28 kundan keyin - https://yandex.ru/video/preview/207721904695828637", "O`liklar tongi - https://yandex.ru/video/preview/16160611712617596589",  "Zombilend - https://yandex.ru/video/preview/9861466346593021887", "O‘liklar armiyasi - https://yandex.ru/video/preview/10916926107580855028","Men afsonaman - https://yandex.ru/video/preview/5671921437243688738", "SHon ismli zombi - http://asilmedia.org/12239-shon-ismli-zombi-uzbek-tilida-2004-ozbekcha-tarjima-kino-hd.html"],
+        "marvel": [ "Qasoskorlar Yakun - https://ok.ru/video/1278204316359","Qasoskorlar Cheksizlik urushi - https://yandex.ru/video/preview/4048007840551386363","Temir odam - https://uzmoviy.org/3281-temir-odam-1-uzbek-tilida.html","Qasoskorlar - https://ok.ru/video/1278204316359", "Kapitan Amerika - https://uzmovie.net/kino/tarfilm/5635-birinchi-qasoskor-1-kapitan-amerika-1-uzbek-tilida-2011.html", "Qora Pantera - https://uzmovi.bot/tarjima-kinolar/532-qora-qoplon-qora-pantera-uzbek-tilida.html","Tor Ragnarok - https://uzmoviy.org/3294-tor-3-ragnarok-uzbek-tilida.html","O'rgimchak odam Uydan uzoqda - http://asilmedia.org/8379-orgimchak-odam-uydan-uzoqda-chelovek-pauk-vdali-ot-doma-uzbek-ozbek-tilida-tas-ix-skachat-download.html","Doktor Strange - https://uzmovii.com/tarjima-kinolar/2476-doktor-strenj-2-aqlsiz-multiolam-uzbek-tilida.html"]
     },
 
     "ru": {
@@ -112,7 +117,8 @@ async def insert_data():
         "romantic": ["гордость и предубеждение - https://yandex.ru/video/preview/699521713314786762 "," La La Land - https://yandex.ru/video/preview/9909980561903561788","Виноваты звёзды  - https://yandex.ru/video/preview/1029374615191832428"," Ноттинг-Хилл - https://yandex.ru/video/preview/12162102337876979936"," 10 вещей, которые я ненавижу в тебе - https://yandex.ru/video/preview/7971243644093620662"," настоящая любовь - https://yandex.ru/video/preview/15464780081932162155","benjamin button - https://yandex.ru/video/preview/11337546526107439557"],
         "fantasy": ["Властелин колец  - https://yandex.ru/video/preview/5753178030029492832","Гарри Поттер - https://yandex.ru/video/preview/8941262572811513554 "," Королевство Нарния - https://yandex.ru/video/preview/6637898489663527616 "," Алиса в Стране Чудес - https://yandex.ru/video/preview/12202391922250238400"," Звездная пыль - https://yandex.ru/video/preview/12123862917419392420"," Лабиринт Пан - https://yandex.ru/video/preview/1216798461472116672","Хоббит - https://yandex.ru/video/preview/16037394492439347218", "Перси Джексон - https://yandex.ru/video/preview/15476031515185226004","бегущий в лабиринте - https://yandex.ru/video/preview/14678305615702676294"],
         "historical": ["Храброе сердце - https://yandex.ru/video/preview/17626069744554894332", "Легенда о Коловрате - https://yandex.ru/video/preview/8573487150705546451", "Троя - https://yandex.ru/video/preview/6014418215683103824", "Меч короля Артура - https://yandex.ru/video/preview/12865077344509724747", "Пианист - https://yandex.ru/video/preview/3854469823757622944"],
-        "zombi": [ "Война миров Z - https://yandex.ru/video/preview/15834093964777652438", "Обитель зла - https://yandex.ru/video/preview/12725293418865249480", "Поезд в Пусан - https://yandex.ru/video/preview/1058089952645602086","28 дней спустя - https://yandex.ru/video/preview/207721904695828637","Рассвет мертвецов - https://yandex.ru/video/preview/16160611712617596589","Добро пожаловать в Zомбилэнд - https://yandex.ru/video/preview/9861466346593021887", "Армия мертвецов - https://yandex.ru/video/preview/10276233339808130409","Я легенда - https://yandex.ru/video/preview/16909271728467165316"] 
+        "zombi": [ "Война миров Z - https://yandex.ru/video/preview/15834093964777652438", "Обитель зла - https://yandex.ru/video/preview/12725293418865249480", "Поезд в Пусан - https://yandex.ru/video/preview/1058089952645602086","28 дней спустя - https://yandex.ru/video/preview/207721904695828637","Рассвет мертвецов - https://yandex.ru/video/preview/16160611712617596589","Добро пожаловать в Zомбилэнд - https://yandex.ru/video/preview/9861466346593021887", "Армия мертвецов - https://yandex.ru/video/preview/10276233339808130409","Я легенда - https://yandex.ru/video/preview/16909271728467165316", "Зомби по имени Шон - https://rutube.ru/video/7c9cb3c368ac4ed828e769316b4a91b0/"],
+        "marvel": ["Мстители Финал - https://rutube.ru/video/6411d33b66a9bde84eb5435ebb12e022/","Мстители Война бесконечности - https://rutube.ru/video/13ab8d24ce9e9c8119b4d67af9daf482/","Железный человек - https://rutube.ru/video/aacd1dbe5fbb1a808257060c0436a80e/","Мстители - https://rutube.ru/video/e7fa3f8316733b04210c53a801af38e0/","Капитан Америка - https://rutube.ru/video/d1a9b4df10b643ac96719e082b563ff9/","Чёрная Пантера - https://rutube.ru/video/a65af08047f9d37b59557a54767b4b5e/","Тор Рагнарёк - https://rutube.ru/video/548511b3d6154aacd1577cf58550ef3f/","Человек-паук: Вдали от дома - https://rutube.ru/video/301cefc5161846ebf191870ef69f69a9/","Доктор Стрэндж - https://rutube.ru/video/336c4d7aaebc8f56b8af55d082ac4388/"] 
     },
 
     "en": {
@@ -127,7 +133,8 @@ async def insert_data():
         "romantic": ["Pride and Prejudice - https://www.imdb.com/title/tt0414387/?ref_=ext_shr_lnk", "La La Land - https://www.imdb.com/title/tt3783958/?ref_=ext_shr_lnk", "The FaultStars in Our  -  https://www.imdb.com/title/tt2582846/?ref_=ext_shr_lnk","Notting Hill - https://inoriginal.net/films/2073-notting-hill-1999.html", "10 Things I Hate About You - https://inoriginal.net/films/25-10-prichin-moej-nenavisti.html", "Love Actually - https://inoriginal.net/films/2267-love-actually-2003.html", "Benjamin Button - https://inoriginal.net/films/783-the-curious-case-of-benjamin-button-2008.html"],
         "fantasy": ["The Lord of the Rings - https://inoriginal.net/films/424-the-lord-of-the-rings-the-fellowship-of-the-ring-2001.html", "Harry Potter - https://inoriginal.net/films/189-harry-potter-and-the-sorcerer-s-stone-2001.html", "The Chronicles of Narnia - https://inoriginal.net/films/627-the-chronicles-of-narnia-the-lion-the-witch-and-the-wardrobe-2005.html", "Alice in Wonderland - https://inoriginal.net/films/305-alice-in-wonderland-2010.html", "Stardust - https://inoriginal.net/films/747-stardust-2007.html", "Pan’s Labyrinth - https://www.imdb.com/title/tt0457430/?ref_=ext_shr_lnk", "The Hobbit - https://inoriginal.net/films/408-the-hobbit-an-unexpected-journey-2012.html", "Percy Jackson - https://inoriginal.net/films/1514-percy-jackson-and-the-olympians-the-lightning-thief-2010.html", "Maze Runner - https://inoriginal.net/films/437-the-maze-runner-2014.html"],
         "historical": ["Braveheart - https://inoriginal.net/films/114-braveheart-1995.html", "Troy - https://inoriginal.net/films/640-troy-2004.html", "King Arthur: Legend of the sword - https://inoriginal.net/films/1329-king-arthur-legend-of-the-sword-2017.html", "The pianists - https://inoriginal.net/films/794-the-pianist-2002.html"],
-        "zombi": ["World War Z - https://inoriginal.net/films/355-world-war-z-2013.html", "Resident Evil - https://inoriginal.net/films/106-resident-evil-apocalypse-2004.html", "28 Days Later - https://inoriginal.net/films/31-28-days-later-2002.html", "Dawn of the Dead - https://inoriginal.net/films/1181-dawn-of-the-dead-2004.html", "Zombieland - https://inoriginal.net/films/696-zombieland-2009.html", "Army of the Dead - https://inoriginal.net/films/73-army-of-the-dead-2021.html", "I Am Legend - https://inoriginal.net/?story=I+Am+Legend&do=search&subaction=search"]
+        "zombi": [  "World War Z - https://inoriginal.net/films/355-world-war-z-2013.html","Resident Evil - https://inoriginal.net/films/106-resident-evil-apocalypse-2004.html","28 Days Later - https://inoriginal.net/films/31-28-days-later-2002.html","Dawn of the Dead - https://inoriginal.net/films/1181-dawn-of-the-dead-2004.html","Zombieland - https://inoriginal.net/films/696-zombieland-2009.html","Army of the Dead - https://inoriginal.net/films/73-army-of-the-dead-2021.html","I Am Legend - https://inoriginal.net/?story=I+Am+Legend&do=search&subaction=search","Shaun of the Dead - https://www.imdb.com/title/tt0365748/"],
+        "marvel": ["Avengers Endgame - https://inoriginal.net/films/78-avengers-endgame-2019.html","Avengers Infinity War - https://inoriginal.net/films/79-avengers-infinity-war-2018.html","Iron Man - https://inoriginal.net/films/211-iron-man-2008.html","The Avengers - https://inoriginal.net/films/389-the-avengers-2012.html","Captain America - https://inoriginal.net/films/769-captain-america-the-first-avenger-2011.html","Black Panther - https://inoriginal.net/films/777-black-panther-2018.html","Thor Ragnarok - https://inoriginal.net/films/1677-thor-ragnarok-2017.html", "SpiderMan Far From Home - https://inoriginal.net/films/482-spider-man-far-from-home-2019.html","Doctor Strange - https://inoriginal.net/films/1660-doctor-strange-2016.html"]
     },
 
 }
@@ -135,116 +142,134 @@ async def insert_data():
     series_genres = {
     "uz":{
         "Crime/Thriller": "Jinoyat/Triller",
-        "Sci-Fi/Fantasy": "Fantastika/Fentezi",
+        "Sci-Fi/Fantasy": "Fantastika",
         "Comedy": "Komediya",
-        "Drama": "Drama"
+        "Drama": "Drama",
+        "K-drama": "K-drama"
     },
 
     "ru": {
         "Crime/Thriller": "Криминал/Триллер",
-        "Sci-Fi/Fantasy": "Фантастика/Фэнтези",  
+        "Sci-Fi/Fantasy": "Фантастика",  
         "Comedy": "Комедия",
-        "Drama": "Драмы"
+        "Drama": "Драмы",
+        "K-drama": "К-Драмы"
     },
 
     "en": {
         "Crime/Thriller": "Crime/Thriller",
         "Sci-Fi/Fantasy": "Sci-Fi/Fantasy",
         "Comedy": "Comedy",
-        "Drama": "Drama"
+        "Drama": "Drama",
+        "K-drama": "K-drama"
     }
 }   
   
 
     series_list = {
     "uz": {
-        "Crime/Thriller": ["Mashaqqatlar sari - https://topkino.me/serial/2199-mashaqqatlar-sari.html", "Yaxshisi Saulga qo‘ng‘iroq qiling - https://kinok.net/shows/yaxshisi-soulga-qongiroq-qiling-better-call-saul/1-qism/714", "Narkos - https://rutube.ru/plst/337759/", "Shelbilar oilasi - http://asilmedia.org/11211-shelbilar-oilasi-otkir-viqorlilar-uzbek-tilida-barcha-qismlar-britaniya-seriali-ozbek-tilida-2013-ozbekcha-tarjima.html", "Qog‘oz bino - http://asilmedia.org/13561-qogozdan-yasalgan-uy-netflix-ispaniya-seriali-barcha-qismlar-ozbek-tilida-2017-2022-uzbekcha-tarjima.ht","Kartalar uyi - https://rutube.ru/plst/385210/", "Panjara ortida - http://asilmedia.org/5687-panjara-ortida-pobeg-iz-tyurmy-prison-break-fasl-1-qismlar-1-22-jami-22.html", "Dexter - https://kinok.net/shows/dekster-dexter/2-qism/166", "Gentelmenlar - https://rutube.ru/plst/380420/", "Reacher - https://rutube.ru/plst/350617/"],
-        "Sci-Fi/Fantasy": ["Taxtlar o‘yini - http://asilmedia.org/10118-taxtlar-oyini-uzbek-tilida-barcha-qismlar-hd.html", "G‘alati ishlar - http://asilmedia.org/14988-ajabtovur-ishlar-galati-narsalar-seriali-barcha-qismlar-ozbek-tilida-2016-uzbekcha-tarjima.html", "Ajal o‘yini - https://uzmovii.com/serial/5981-ajal-oyini-barcha-qismlar-uzbek-tilida.html", "Yiggitlar - https://hdkinolar.org/serial/2588-yigitlar-1-2-3-4-5-6-7-8-9-10-qismlar-uzbek-tilida.html", "Loki - https://uzmovi.bot/tarjima-seriallar/1489-loki-barcha-qismlar-uzbek-tilida.html", "Biz so‘ngilarmiz - http://asilmedia.org/14835-bizning-songimiz-seriali-barcha-qismlar-ozbek-tilida-2023-uzbekcha-tarjima.html", "Kalmalar o‘yini - https://uzmoovi.org/serial/3380-kalmar-oyini-1-fasl-barcha-qismlar-uzbek-tilida.html", "Ambrella akademiyasi - https://uzbeklar.tv/4580-ambrella-akademiyasi.html"],
+        "Crime/Thriller": ["Mashaqqatlar sari - https://topkino.me/serial/2199-mashaqqatlar-sari.html", "Yaxshisi Saulga qo‘ng‘iroq qiling - https://kinok.net/shows/yaxshisi-soulga-qongiroq-qiling-better-call-saul/1-qism/714", "Narkos - https://rutube.ru/plst/337759/", "Shelbilar oilasi - http://asilmedia.org/11211-shelbilar-oilasi-otkir-viqorlilar-uzbek-tilida-barcha-qismlar-britaniya-seriali-ozbek-tilida-2013-ozbekcha-tarjima.html", 
+        "Qog‘oz bino - http://asilmedia.org/13561-qogozdan-yasalgan-uy-netflix-ispaniya-seriali-barcha-qismlar-ozbek-tilida-2017-2022-uzbekcha-tarjima.ht","Kartalar uyi - https://rutube.ru/plst/385210/", "Panjara ortida - http://asilmedia.org/5687-panjara-ortida-pobeg-iz-tyurmy-prison-break-fasl-1-qismlar-1-22-jami-22.html", "Dexter - https://kinok.net/shows/dekster-dexter/2-qism/166", "Gentelmenlar - https://rutube.ru/plst/380420/", "Reacher - https://rutube.ru/plst/350617/"],
+        "Sci-Fi/Fantasy": ["Taxtlar o‘yini - http://asilmedia.org/10118-taxtlar-oyini-uzbek-tilida-barcha-qismlar-hd.html", "G‘alati ishlar - http://asilmedia.org/14988-ajabtovur-ishlar-galati-narsalar-seriali-barcha-qismlar-ozbek-tilida-2016-uzbekcha-tarjima.html", "Ajal o‘yini - https://uzmovii.com/serial/5981-ajal-oyini-barcha-qismlar-uzbek-tilida.html", "Yiggitlar - https://hdkinolar.org/serial/2588-yigitlar-1-2-3-4-5-6-7-8-9-10-qismlar-uzbek-tilida.html", "Loki - https://uzmovi.bot/tarjima-seriallar/1489-loki-barcha-qismlar-uzbek-tilida.html", 
+        "Biz so‘ngilarmiz - http://asilmedia.org/14835-bizning-songimiz-seriali-barcha-qismlar-ozbek-tilida-2023-uzbekcha-tarjima.html", "Kalmalar o‘yini - https://uzmoovi.org/serial/3380-kalmar-oyini-1-fasl-barcha-qismlar-uzbek-tilida.html", "Ambrella akademiyasi - https://uzbeklar.tv/4580-ambrella-akademiyasi.html", "Biz barchamiz o`likmiz - http://asilmedia.org/13670-biz-hammamiz-oliklarmiz-hammasi-olganlar-olikmiz-netflix-koreya-seriali-barcha-qismlar-ozbek-tilida-2022-uzbekcha-tarjima.html"],
         "Comedy": ["Do‘stlar -  https://rutube.ru/plst/336529/","Dexter - https://kinok.net/shows/dekster-dexter/2-qism/166", "Gentelmenlar - https://rutube.ru/plst/380420/", "Suits - https://rutube.ru/plst/882733/"],
-        "Drama": ["Vorislik - https://www.kinopoisk.ru/series/986788/", "Suits - https://rutube.ru/plst/882733/" , "Chernobil - http://asilmedia.org/9252-chernobil-chernobyl-serial-uzbek-tilida-2019-hd-ozbek-tarjima-tas-ix-skachat.html", "Panjara ortida - http://asilmedia.org/5687-panjara-ortida-pobeg-iz-tyurmy-prison-break-fasl-1-qismlar-1-22-jami-22.html "]
+        "Drama": ["Vorislik - https://www.kinopoisk.ru/series/986788/", "Oliy tablilar - https://rutube.ru/plst/882733/" , "Chernobil - http://asilmedia.org/9252-chernobil-chernobyl-serial-uzbek-tilida-2019-hd-ozbek-tarjima-tas-ix-skachat.html", "Panjara ortida - http://asilmedia.org/5687-panjara-ortida-pobeg-iz-tyurmy-prison-break-fasl-1-qismlar-1-22-jami-22.html"],
+        "K-drama": ["Goblin - https://playuz.net/654-goblin-1-3-5-7-9-11-13-14-16-qism-uzbek-tilida-koreya-serial-2016-barcha-qismlar-tarjima-serial-uzbekcha-skachat/episode/15.html","Vinchenzo - https://uzmovee.net/seriallar_uzbek_tilida/215-vinchenzo-koreys-serial-uzbek-tilida-2021-barcha-qismlar-720-hd-yuklab-olish.html","Vorislar - http://asilmedia.org/9005-vorislar-korea-seriali-12345678910-qism-nasledniki-serial-sangsokjadeul-2013-hd-tas-ix-skachat.html","Quyosh avlodlari - https://uzmovii.com/serial/6020-quyosh-avlodlari-barcha-qismlar-uzbek-tilida.html","F4 - https://uzmoovi.com/serial/3995-guldan-gozal-yigitlar-barcha-qismlar-koreys-serial-uzbek-tilida.html","Del Luna mehmonxonasi - https://uzbektilida.org/serial/3455-mehmonxona-bekasi-barcha-qismlar-uzbek-tilida/episode/1.html",
+        "Kuchli ayol Do Bong Soon - https://uzmovii.com/serial/3940-kuchli-qiz-do-bong-son-barcha-qismlar-uzbek-tilida.html","Qirol: Abadiy monarx - https://uzmovii.com/serial/5049-qirol-abadiy-monarx-barcha-qismlar-uzbek-tilida.html","Qonxor itlar - https://uzproo.com/serial/437-ovchi-qonxor-itlar-2-fasl-1-2-3-4-5-6-7-8-9-10-11-12-15-qismlar-barcha-uzbek-tilida-2025-ozbekcha-tarjima.html","Asl gozallik - https://playuz.net/seriallar_2025/31-asl-gozalik-korea-seryali-2020-uzbek-tilida-1-2-3-510-15-16-qism-barcha-qismlar.html"]
     },    
     "ru": {
         "Crime/Thriller": ["Во все тяжкие - https://rutube.ru/plst/362343/", "Лучше звоните Солу - https://rutube.ru/plst/422294/", "Нарко - https://rutube.ru/plst/337759/", "Острые козырьки - https://rutube.ru/plst/336313/", "Бумажный дом - https://rutube.ru/plst/338189/", "Карточный домик - https://rutube.ru/plst/385210/", "Побег - https://rutube.ru/plst/394021/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Ричер - https://rutube.ru/plst/350617/"],
-        "Sci-Fi/Fantasy": ["Игра престолов - https://www.kinopoisk.ru/series/464963/", "Очень странные дела - https://rutube.ru/plst/363538/", "Алиса в Пограничье - https://rutube.ru/plst/349405/", "Пацаны - https://rutube.ru/plst/337761/", "Локи - https://rutube.ru/plst/415973/", "Одни из нас - https://rutube.ru/plst/616438/", "Игра в кальмара - https://rutube.ru/plst/333276/", "Академия Амбрелла - https://rutube.ru/plst/367214/"],
+        "Sci-Fi/Fantasy": ["Игра престолов - https://www.kinopoisk.ru/series/464963/", "Очень странные дела - https://rutube.ru/plst/363538/", "Алиса в Пограничье - https://rutube.ru/plst/349405/", "Пацаны - https://rutube.ru/plst/337761/", "Локи - https://rutube.ru/plst/415973/", "Одни из нас - https://rutube.ru/plst/616438/", "Игра в кальмара - https://rutube.ru/plst/333276/", "Академия Амбрелла - https://rutube.ru/plst/367214/", "Мы все мертвы - https://rutube.ru/plst/347745/"],
         "Comedy": ["Друзья - https://rutube.ru/plst/336529/", "Декстер - https://rutube.ru/plst/731631/", "Джентльмен - https://rutube.ru/plst/380420/", "Форс-мажоры - https://rutube.ru/plst/882733/"],
-        "Drama": ["Наследники - https://www.kinopoisk.ru/series/986788/", "Форс-мажоры - https://rutube.ru/plst/882733/", "Чернобыль - https://hd.kinopoisk.ru/ru-uz/film/4a736aa840d5a895a94448a999495906", "Побег - https://rutube.ru/plst/394021/"]
+        "Drama": ["Наследники - https://rezka.ag/series/drama/27870-nasledniki-2018.html", "Форс-мажоры - https://rutube.ru/plst/882733/", "Чернобыль - https://hd.kinopoisk.ru/ru-uz/film/4a736aa840d5a895a94448a999495906", "Побег - https://rutube.ru/plst/394021/"],
+        "K-drama": ["Гоблин - https://rutube.ru/metainfo/tv/211679/","Винченцо","Наследники кореа - https://rutube.ru/plst/376445/","Потомки солнца - https://rutube.ru/metainfo/tv/198471/","Мальчики краше цветов- https://rutube.ru/metainfo/tv/548868/","Отель «Дел Луна - https://rutube.ru/metainfo/tv/198474/","Сильная женщина До Бон Сон - https://rutube.ru/metainfo/tv/211671/","Король: Вечный монарх - https://rutube.ru/plst/369873/", "Охотничьи псы - https://rutube.ru/plst/381335/","Истинная красота - https://rutube.ru/metainfo/tv/540787/" ]
     },
     "en": {
         "Crime/Thriller": ["Breaking Bad - https://inoriginal.net/series/432-breaking-bad-2008.html", "Better Call Saul - https://inoriginal.net/series/1228-better-call-saul-2015.html", "Narcos - https://www.imdb.com/title/tt2707408/?ref_=ext_shr_lnk", "Peaky Blinders - https://inoriginal.net/series/431-peaky-blinders-2013.html", "Money Heist - https://inoriginal.net/series/4645-money-heist-2017.html","House of Cards - https://inoriginal.net/series/1338-house-of-cards-2013.html", "Prison Break - https://inoriginal.net/series/1893-prison-break-2005.html", "Dexter - https://inoriginal.net/series/1170-dexter-2006.html", "The Gentelman - https://www.imdb.com/title/tt13210838/?ref_=ext_shr_lnk","Reacher - https://inoriginal.net/series/2204-reacher-2022.html"],
-        "Sci-Fi/Fantasy": ["Game of Thrones - https://www.imdb.com/title/tt0944947/?ref_=ext_shr_lnk", "Stranger Things - https://inoriginal.net/series/489-stranger-things-2016.html", "Alice in Borderland - https://www.imdb.com/title/tt10795658/?ref_=ext_shr_lnk", "The Boys - https://inoriginal.net/series/1086-the-boys-2019.html", "Loki - https://inoriginal.net/series/1125-loki-2021.html", "The Last of Us - https://inoriginal.net/series/410-the-last-of-us-2023.html", "Squid Game - https://inoriginal.net/series/1114-squid-game-2021.html", "The Umbrella Academy - https://inoriginal.net/series/1156-the-umbrella-academy-2019.html"],
+        "Sci-Fi/Fantasy": ["Game of Thrones - https://www.imdb.com/title/tt0944947/?ref_=ext_shr_lnk", "Stranger Things - https://inoriginal.net/series/489-stranger-things-2016.html", "Alice in Borderland - https://www.imdb.com/title/tt10795658/?ref_=ext_shr_lnk", "The Boys - https://inoriginal.net/series/1086-the-boys-2019.html", "Loki - https://inoriginal.net/series/1125-loki-2021.html", "The Last of Us - https://inoriginal.net/series/410-the-last-of-us-2023.html", "Squid Game - https://inoriginal.net/series/1114-squid-game-2021.html","The Umbrella Academy - https://inoriginal.net/series/1156-the-umbrella-academy-2019.html", "All of us are dead - https://www.imdb.com/title/tt14169960/"],
         "Comedy": ["Friends - https://inoriginal.net/series/356-friends-1994.html", "Dexter - https://inoriginal.net/series/1170-dexter-2006.html", " The Gentelman - https://www.imdb.com/title/tt13210838/?ref_=ext_shr_lnk", "Suits - https://inoriginal.net/series/2074-suit-2011.html","Prison Break - https://inoriginal.net/series/1893-prison-break-2005.html"],
-        "Drama": ["Succession - https://inoriginal.net/series/1133-succession-2018.html", "Suits - https://inoriginal.net/series/2074-suit-2011.html" , "Chernobyl - https://inoriginal.net/series/730-chernobyl-2019.html"]
+        "Drama": ["Succession - https://inoriginal.net/series/1133-succession-2018.html", "Suits - https://inoriginal.net/series/2074-suit-2011.html" , "Chernobyl - https://inoriginal.net/series/730-chernobyl-2019.html"],
+        "K-drama": ["Goblin - https://uzmovii.com/serial/3940-kuchli-qiz-do-bong-son-barcha-qismlar-uzbek-tilida.html","Vincenzo - https://uzmovee.net/seriallar_uzbek_tilida/215-vinchenzo-koreys-serial-uzbek-tilida-2021-barcha-qismlar-720-hd-yuklab-olish.html","The Heirs - http://asilmedia.org/9005-vorislar-korea-seriali-12345678910-qism-nasledniki-serial-sangsokjadeul-2013-hd-tas-ix-skachat.html","Descendants of the Sun - https://uzmovii.com/serial/6020-quyosh-avlodlari-barcha-qismlar-uzbek-tilida.html","Boys Over Flowers - https://uzmoovi.com/serial/3995-guldan-gozal-yigitlar-barcha-qismlar-koreys-serial-uzbek-tilida.html","Hotel Del Luna -  https://uzbektilida.org/serial/3455-mehmonxona-bekasi-barcha-qismlar-uzbek-tilida/episode/1.html",
+        "Strong Woman Do Bong Soon - https://uzmovii.com/serial/3940-kuchli-qiz-do-bong-son-barcha-qismlar-uzbek-tilida.html","The King: Eternal Monarch - https://uzmovii.com/serial/5049-qirol-abadiy-monarx-barcha-qismlar-uzbek-tilida.html", "Bloodhounds - https://uzproo.com/serial/437-ovchi-qonxor-itlar-2-fasl-1-2-3-4-5-6-7-8-9-10-11-12-15-qismlar-barcha-uzbek-tilida-2025-ozbekcha-tarjima.html", "True beauty - https://playuz.net/seriallar_2025/31-asl-gozalik-korea-seryali-2020-uzbek-tilida-1-2-3-510-15-16-qism-barcha-qismlar.html"]
     }
 }
 
 
     async with aiosqlite.connect(DB_NAME) as db:
-        # Janrlarni qo‘shish
+        # Ma'lumotlarni avvaldan belgilangan dictionarylardan kiritish
         for lang, genres in movie_genres.items():
             for genre_key, genre_name in genres.items():
-                await db.execute("INSERT INTO genres (language, genre_key, genre_name) VALUES (?, ?, ?)", 
+                await db.execute("INSERT INTO genres (language, genre_key, genre_name) VALUES (?, ?, ?)",
                                  (lang, genre_key, genre_name))
 
-        # Filmlarni qo‘shish
         for lang, genres in movie_list.items():
             for genre_key, movies in genres.items():
                 for movie_name in movies:
-                    await db.execute("INSERT INTO movies (language, genre_key, movie_name) VALUES (?, ?, ?)", 
+                    await db.execute("INSERT INTO movies (language, genre_key, movie_name) VALUES (?, ?, ?)",
                                      (lang, genre_key, movie_name))
 
-        # Serial janrlarini qo‘shish
         for lang, genres in series_genres.items():
             for genre_key, genre_name in genres.items():
-                await db.execute("INSERT INTO series_genres (language, genre_key, genre_name) VALUES (?, ?, ?)", 
+                await db.execute("INSERT INTO series_genres (language, genre_key, genre_name) VALUES (?, ?, ?)",
                                  (lang, genre_key, genre_name))
 
-        # Serialarni qo‘shish
         for lang, genres in series_list.items():
             for genre_key, series in genres.items():
                 for series_name in series:
-                    await db.execute("INSERT INTO series (language, genre_key, series_name) VALUES (?, ?, ?)", 
+                    await db.execute("INSERT INTO series (language, genre_key, series_name) VALUES (?, ?, ?)",
                                      (lang, genre_key, series_name))
 
         await db.commit()
 
 
-# Foydalanuvchining tanlagan tilini saqlash
+# 3. Foydalanuvchi tilini saqlash
 async def save_user_language(user_id: int, lang: str):
     async with aiosqlite.connect(DB_NAME) as db:
-        await db.execute(
-            "INSERT INTO users (user_id, language) VALUES (?, ?) "
-            "ON CONFLICT(user_id) DO UPDATE SET language = excluded.language",
-            (user_id, lang)
-        )
+        await db.execute("""
+            INSERT INTO users (user_id, language)
+            VALUES (?, ?)
+            ON CONFLICT(user_id) DO UPDATE SET language = excluded.language
+        """, (user_id, lang))
         await db.commit()
 
-# Foydalanuvchining tilini olish
+
+# 4. Foydalanuvchi tilini olish
 async def get_user_language(user_id: int) -> str:
     async with aiosqlite.connect(DB_NAME) as db:
         cursor = await db.execute("SELECT language FROM users WHERE user_id = ?", (user_id,))
         row = await cursor.fetchone()
-        return row[0] if row else "uz"  # Agar yo‘q bo‘lsa default uz
+        return row[0] if row else "uz"  # Default til: uz
 
+
+# 5. Kinolar janrlarini olish
 async def get_movie_genres(language):
     async with aiosqlite.connect(DB_NAME) as db:
         cursor = await db.execute("SELECT genre_key, genre_name FROM genres WHERE language = ?", (language,))
         return {row[0]: row[1] for row in await cursor.fetchall()}
 
+
+# 6. Kinolarni janr bo‘yicha olish
 async def get_movies_by_genre(language, genre_key):
     async with aiosqlite.connect(DB_NAME) as db:
         cursor = await db.execute("SELECT movie_name FROM movies WHERE language = ? AND genre_key = ?", (language, genre_key))
         return [row[0] for row in await cursor.fetchall()]
 
+
+# 7. Serial janrlarini olish
 async def get_series_genres(language):
     async with aiosqlite.connect(DB_NAME) as db:
         cursor = await db.execute("SELECT genre_key, genre_name FROM series_genres WHERE language = ?", (language,))
         return {row[0]: row[1] for row in await cursor.fetchall()}
 
+
+# 8. Serialni janr bo‘yicha olish
 async def get_series_by_genre(language, genre_key):
     async with aiosqlite.connect(DB_NAME) as db:
         cursor = await db.execute("SELECT series_name FROM series WHERE language = ? AND genre_key = ?", (language, genre_key))
         return [row[0] for row in await cursor.fetchall()]
 
+
+# 9. Qidiruv funksiyasi (kino + serial)
 async def search_movies_and_series(language, query):
     async with aiosqlite.connect(DB_NAME) as db:
         cursor = await db.execute("SELECT movie_name FROM movies WHERE language = ? AND movie_name LIKE ?", (language, f"%{query}%"))
