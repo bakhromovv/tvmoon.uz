@@ -3,8 +3,6 @@ from aiogram import Bot, Dispatcher, F, types
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, KeyboardButton, ReplyKeyboardMarkup
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from aiogram.fsm.state import State
-import database
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.storage.memory import MemoryStorage
 
@@ -14,7 +12,10 @@ dp = Dispatcher(storage=storage)
 class FeedbackStates(StatesGroup):
     waiting_for_feedback = State()
 
-API_TOKEN = '7383378706:AAEHT3fKEW7DT3AsV5JsqMxH5S00bzPaFZs'
+import database
+
+
+API_TOKEN = '7742824465:AAH0HRBLGiYldRG4MUN8lLkx5FLEgm4-0Y4'
 bot = Bot(token=API_TOKEN)
 
 
@@ -179,9 +180,9 @@ async def handle_genre_selection(call: CallbackQuery):
     ])
 
     messages = {
-        "uz": "Mavjud kinolar:",
-        "ru": "Доступные фильмы:",
-        "en": "Available movies:"
+        "uz": f"🎬 Kino janri: {genre_key}",
+        "ru": f"🎬 Фильмы в жанре {genre_key}",
+        "en": f"🎬 Movies in the {genre_key} genre"
     }
     await call.message.edit_text(messages[language], reply_markup=markup)
 
@@ -213,14 +214,13 @@ async def plain_text_search(message: types.Message):
     )
 
 
-
 @dp.message(Command("kino"))
 async def movie(message: types.Message):
     language = user_languages.get(message.from_user.id, "uz")
     movie_genres = await database.get_movie_genres(language)
     markup = InlineKeyboardMarkup(
         inline_keyboard=[[InlineKeyboardButton(text=name, callback_data=f"genre_{key}")]
-                         for key, name in movie_genres.items()]
+        for key, name in movie_genres.items()]
     )
     messages = {
         "uz": "Kino janrini tanlang:",
@@ -231,14 +231,12 @@ async def movie(message: types.Message):
 
 
 @dp.message(Command("serial"))
-
-
 async def series(message: types.Message):
     language = user_languages.get(message.from_user.id, "uz")
     series_genres = await database.get_series_genres(language)
     markup = InlineKeyboardMarkup(
         inline_keyboard=[[InlineKeyboardButton(text=name, callback_data=f"series_{key}")]
-                         for key, name in series_genres.items()]
+        for key, name in series_genres.items()]
     )
     messages = {
         "uz": "Serial janrini tanlang:",
@@ -246,32 +244,6 @@ async def series(message: types.Message):
         "en": "Choose a series genre:"
     }
     await message.answer(messages[language], reply_markup=markup)
-
-
-@dp.callback_query(F.data == "cancel")
-async def cancel_handler(call: CallbackQuery):
-    await call.message.delete()
-
-
-@dp.message(Command("clear"))
-async def clear_messages(message: types.Message):
-    for i in range(message.message_id, message.message_id - 3, -1):
-        try:
-            await bot.delete_message(message.chat.id, i)
-        except Exception:
-            continue
-
-
-@dp.message(Command("help"))
-async def help_command(message: types.Message):
-    language = user_languages.get(message.from_user.id, "uz")
-    messages = {
-        "uz": "/start - Botni yangilaydi\n/movie - Kinolar janrini chiqaradi\n/series - Serial janrlarini chiqaradi\n/search <nom> - Kino yoki serialni topadi\n/clear - Oxirgi xabarlarni o‘chiradi",
-        "ru": "/start - Обновляет бота\n/movie - Показывает жанры фильмов\n/series - Показывает жанры сериалов\n/search <name> - Находит фильм или сериал\n/clear - Очищает последние сообщения",
-        "en": "/start - Updates bot\n/movie - Shows movie genres\n/series - Shows series genres\n/search <name> - Finds a movie or series\n/clear - Clears recent messages"
-    }
-    await message.answer(messages[language])
-
 
 @dp.message(Command("myid", "profile"))
 async def show_profile(message: types.Message):
@@ -303,6 +275,32 @@ async def change_language(message: types.Message):
         reply_markup=inline_markup
     )
 
+
+@dp.callback_query(F.data == "cancel")
+async def cancel_handler(call: CallbackQuery):
+    await call.message.delete()
+
+
+@dp.message(Command("clear"))
+async def clear_messages(message: types.Message):
+    for i in range(message.message_id, message.message_id - 100, -1):
+        try:
+            await bot.delete_message(message.chat.id, i)
+        except Exception:
+            continue
+
+
+@dp.message(Command("help"))
+async def help_command(message: types.Message):
+    language = user_languages.get(message.from_user.id, "uz")
+    messages = {
+        "uz": "/start - Botni yangilaydi\n/movie - Kinolar janrini chiqaradi\n/series - Serial janrlarini chiqaradi\n/search <nom> - Kino yoki serialni topadi\n/clear - Oxirgi xabarlarni o‘chiradi",
+        "ru": "/start - Обновляет бота\n/movie - Показывает жанры фильмов\n/series - Показывает жанры сериалов\n/search <name> - Находит фильм или сериал\n/clear - Очищает последние сообщения",
+        "en": "/start - Updates bot\n/movie - Shows movie genres\n/series - Shows series genres\n/search <name> - Finds a movie or series\n/clear - Clears recent messages"
+    }
+    await message.answer(messages[language])
+
+
 # /request komandasiga javob
 @dp.message(Command("request"))
 async def request_feedback(message: types.Message, state: FSMContext):
@@ -333,6 +331,9 @@ async def main():
     dp.message.register(handle_feedback, F.state == FeedbackStates.waiting_for_feedback)
 
     await dp.start_polling(bot)
+
+
+
 
 if __name__ == "__main__":
     asyncio.run(main())
