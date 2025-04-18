@@ -148,11 +148,24 @@ async def show_genre_selection(call: CallbackQuery):
     await call.message.edit_text(messages[language], reply_markup=markup)
 
 
+
 @dp.callback_query(F.data.startswith("genre_"))
 async def handle_genre_selection(call: CallbackQuery):
-    genre_key = call.data.split("_")[1]
+    parts = call.data.split("_")
+    genre_key = parts[1]
+    page = int(parts[3]) if len(parts) > 3 and parts[2] == "page" else 1
+
     language = user_languages.get(call.from_user.id, "uz")
     movies = await database.get_movies_by_genre(language, genre_key)
+
+    # Tartibni saqlab dublikatlarni olib tashlash
+    seen = set()
+    unique_movies = []
+    for m in movies:
+        if m not in seen:
+            seen.add(m)
+            unique_movies.append(m)
+    movies = unique_movies
 
     if not movies:
         messages = {
@@ -163,17 +176,37 @@ async def handle_genre_selection(call: CallbackQuery):
         await call.answer(messages[language], show_alert=True)
         return
 
-    markup = InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text=title.strip(), url=link.strip())]
-        for m in set(movies) if (parts := m.split(" - ")) and len(parts) == 2
-        for title, link in [parts]]
-    )
+    per_page = 10
+    start = (page - 1) * per_page
+    end = start + per_page
+    page_movies = movies[start:end]
+
+    markup = InlineKeyboardMarkup(inline_keyboard=[])
+
+    for m in page_movies:
+        if (parts := m.split(" - ")) and len(parts) == 2:
+            title, link = parts
+            markup.inline_keyboard.append([InlineKeyboardButton(text=title.strip(), url=link.strip())])
 
     buttons_text = {
-        "uz": {"back": "⬅ Orqaga", "cancel": "❌ Bekor qilish"},
-        "ru": {"back": "⬅ Назад", "cancel": "❌ Отмена"},
-        "en": {"back": "⬅ Back", "cancel": "❌ Cancel"}
+        "uz": {"back": "⬅ Orqaga", "cancel": "❌ Bekor qilish", "next": "➡ Keyingi", "prev": "⬅ Oldingi"},
+        "ru": {"back": "⬅ Назад", "cancel": "❌ Отмена", "next": "➡ Далее", "prev": "⬅ Назад"},
+        "en": {"back": "⬅ Back", "cancel": "❌ Cancel", "next": "➡ Next", "prev": "⬅ Previous"}
     }
+
+    nav_buttons = []
+    if start > 0:
+        nav_buttons.append(InlineKeyboardButton(
+            text=buttons_text[language]["prev"],
+            callback_data=f"genre_{genre_key}_page_{page - 1}"
+        ))
+    if end < len(movies):
+        nav_buttons.append(InlineKeyboardButton(
+            text=buttons_text[language]["next"],
+            callback_data=f"genre_{genre_key}_page_{page + 1}"
+        ))
+    if nav_buttons:
+        markup.inline_keyboard.append(nav_buttons)
 
     markup.inline_keyboard.append([
         InlineKeyboardButton(text=buttons_text[language]["back"], callback_data="category_movies"),
@@ -181,10 +214,11 @@ async def handle_genre_selection(call: CallbackQuery):
     ])
 
     messages = {
-        "uz": f"🎬 Kino janri: {genre_key}",
-        "ru": f"🎬 Фильмы в жанре {genre_key}",
-        "en": f"🎬 Movies in the {genre_key} genre"
+        "uz": f"🎬 Kino janri: {genre_key} (sahifa {page})",
+        "ru": f"🎬 Фильмы в жанре {genre_key} (страница {page})",
+        "en": f"🎬 Movies in the {genre_key} genre (page {page})"
     }
+
     await call.message.edit_text(messages[language], reply_markup=markup)
 
 
