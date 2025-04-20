@@ -15,7 +15,7 @@ class FeedbackStates(StatesGroup):
 import database
 
 
-API_TOKEN = '7383378706:AAEHT3fKEW7DT3AsV5JsqMxH5S00bzPaFZs'
+API_TOKEN = '7742824465:AAH0HRBLGiYldRG4MUN8lLkx5FLEgm4-0Y4'
 bot = Bot(token=API_TOKEN)
 
 
@@ -24,6 +24,7 @@ user_languages = {}
 waiting_for_feedback = State() 
 
 ADMIN_ID =  1169513021
+user_list = set()
 
 async def on_startup():
     await database.setup_database()
@@ -94,7 +95,10 @@ async def show_series_selection(call: CallbackQuery):
 
 @dp.callback_query(F.data.startswith("series_"))
 async def handle_series_selection(call: CallbackQuery):
-    genre_key = call.data.split("_")[1]
+    parts = call.data.split("_")
+    genre_key = parts[1]
+    page = int(parts[3]) if len(parts) > 3 and parts[2] == "page" else 1  # Page calculation
+
     language = user_languages.get(call.from_user.id, "uz")
     series = await database.get_series_by_genre(language, genre_key)
 
@@ -107,29 +111,66 @@ async def handle_series_selection(call: CallbackQuery):
         await call.answer(messages[language], show_alert=True)
         return
 
+    # Remove duplicates
+    seen = set()
+    unique_series = []
+    for s in series:
+        if s not in seen:
+            seen.add(s)
+            unique_series.append(s)
+    series = unique_series
+
+    # Pagination
+    per_page = 10
+    start = (page - 1) * per_page
+    end = start + per_page
+    page_series = series[start:end]
+
+    # Generate inline keyboard with series titles and links
     markup = InlineKeyboardMarkup(
-        inline_keyboard=[[InlineKeyboardButton(text=title.strip(), url=link.strip())]
-        for s in set(series) if (parts := s.split(" - ")) and len(parts) == 2
-        for title, link in [parts]]
+        inline_keyboard=[
+            [InlineKeyboardButton(text=title.strip(), url=link.strip())]
+            for s in page_series if (parts := s.split(" - ")) and len(parts) == 2
+            for title, link in [parts]
+        ]
     )
 
+    # Buttons for pagination
     buttons_text = {
-        "uz": {"back": "⬅ Orqaga", "cancel": "❌ Bekor qilish"},
-        "ru": {"back": "⬅ Назад", "cancel": "❌ Отмена"},
-        "en": {"back": "⬅ Back", "cancel": "❌ Cancel"}
+        "uz": {"back": "⬅ Orqaga", "cancel": "❌ Bekor qilish", "next": "➡ ", "prev": "⬅ "},
+        "ru": {"back": "⬅ Назад", "cancel": "❌ Отмена", "next": "➡ ", "prev": "⬅ "},
+        "en": {"back": "⬅ Back", "cancel": "❌ Cancel", "next": "➡ ", "prev": "⬅ "}
     }
 
+    nav_buttons = []
+    if start > 0:  # Previous page button
+        nav_buttons.append(InlineKeyboardButton(
+            text=buttons_text[language]["prev"],
+            callback_data=f"series_{genre_key}_page_{page - 1}"
+        ))
+    if end < len(series):  # Next page button
+        nav_buttons.append(InlineKeyboardButton(
+            text=buttons_text[language]["next"],
+            callback_data=f"series_{genre_key}_page_{page + 1}"
+        ))
+
+    if nav_buttons:
+        markup.inline_keyboard.append(nav_buttons)
+
+    # Adding back and cancel buttons
     markup.inline_keyboard.append([
         InlineKeyboardButton(text=buttons_text[language]["back"], callback_data="category_series"),
         InlineKeyboardButton(text=buttons_text[language]["cancel"], callback_data="cancel")
     ])
 
+    # Send message with available series and pagination
     messages = {
-        "uz": "Mavjud seriallar:",
-        "ru": "Доступные сериалы:",
-        "en": "Available series:"
+        "uz": f"Mavjud seriallar (sahifa {page}):",
+        "ru": f"Доступные сериалы (страница {page}):",
+        "en": f"Available series (page {page}):"
     }
     await call.message.edit_text(messages[language], reply_markup=markup)
+
 
 
 @dp.callback_query(F.data == "category_movies")
@@ -146,7 +187,6 @@ async def show_genre_selection(call: CallbackQuery):
         "en": "Choose a movie genre:"
     }
     await call.message.edit_text(messages[language], reply_markup=markup)
-
 
 
 @dp.callback_query(F.data.startswith("genre_"))
@@ -189,9 +229,9 @@ async def handle_genre_selection(call: CallbackQuery):
             markup.inline_keyboard.append([InlineKeyboardButton(text=title.strip(), url=link.strip())])
 
     buttons_text = {
-        "uz": {"back": "⬅ Orqaga", "cancel": "❌ Bekor qilish", "next": "➡ Keyingi", "prev": "⬅ Oldingi"},
-        "ru": {"back": "⬅ Назад", "cancel": "❌ Отмена", "next": "➡ Далее", "prev": "⬅ Назад"},
-        "en": {"back": "⬅ Back", "cancel": "❌ Cancel", "next": "➡ Next", "prev": "⬅ Previous"}
+        "uz": {"back": "⬅ Orqaga", "cancel": "❌ Bekor qilish", "next": "➡ ", "prev": "⬅ "},
+        "ru": {"back": "⬅ Назад", "cancel": "❌ Отмена", "next": "➡ ", "prev": "⬅ "},
+        "en": {"back": "⬅ Back", "cancel": "❌ Cancel", "next": "➡ ", "prev": "⬅ "}
     }
 
     nav_buttons = []
@@ -220,6 +260,7 @@ async def handle_genre_selection(call: CallbackQuery):
     }
 
     await call.message.edit_text(messages[language], reply_markup=markup)
+
 
 
 def latin_to_cyrillic(text):
@@ -393,6 +434,29 @@ async def handle_feedback(message: types.Message, state: FSMContext):
     await message.answer("✅ Fikringiz adminlarga yuborildi. Rahmat!")
     await state.clear()
 
+    # Reklama yuborish
+@dp.message(Command("reklama"))
+async def reklama(message: types.Message):
+    if message.from_user.id != ADMIN_ID:
+        await message.reply_text("⛔ Sizda bu amalni bajarish huquqi yo‘q.")
+        return
+
+    if not message.text.split()[1:]:
+        await message.answer("ℹ️ Reklama matnini yozing. Masalan: /reklama Yangilik!")
+        return
+
+    reklama_matni = " ".join(message.text.split()[1:])
+    count = 0
+
+    # Reklama yuborish
+    for user_id in user_list:
+        try:
+            await bot.send_message(chat_id=user_id, text=reklama_matni)
+            count += 1
+        except:
+            pass
+    await message.answer(f"✅ {count} ta foydalanuvchiga reklama yuborildi.")
+
 
 async def main():
     await on_startup()
@@ -408,6 +472,3 @@ if __name__ == "__main__":
 
 
 
-
-if __name__ == "__main__":
-    asyncio.run(main())
