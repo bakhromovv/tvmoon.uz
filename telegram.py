@@ -457,6 +457,30 @@ async def reklama(message: types.Message):
             pass
     await message.answer(f"✅ {count} ta foydalanuvchiga reklama yuborildi.")
 
+@dp.message(Command("stat"))
+async def send_stat(message: types.Message):
+    if message.from_user.id != ADMIN_ID:
+        await message.reply("⛔ Sizda bu amalni bajarish huquqi yo‘q.")
+        return
+
+    # Statistika olish
+    # Foydalanuvchi soni, fikrlar soni va boshqa ma'lumotlar
+    user_count = len(user_languages)  # Masalan, foydalanuvchi soni
+    feedback_count = 0  # Bu yerda siz feedbacklar sonini olishni xohlasangiz, o'zgartirishingiz mumkin.
+
+    # Database'dan boshqa ma'lumotlarni olish
+    # Misol uchun:
+    # feedback_count = await database.get_feedback_count()
+
+    stat_message = (
+        f"📊 Statistika:\n"
+        f"🧑‍💻 Foydalanuvchilar soni: {user_count}\n"
+        f"💬 Fikrlar soni: {feedback_count}\n"
+        # Qo'shimcha statistikani shu yerda qo'shish mumkin
+    )
+
+    await message.answer(stat_message)
+
 
 async def main():
     await on_startup()
