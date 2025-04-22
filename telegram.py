@@ -14,6 +14,9 @@ class FeedbackStates(StatesGroup):
 
 import database
 
+class BroadcastState(StatesGroup):
+    waiting_for_photo = State()
+    waiting_for_text = State()
 
 API_TOKEN = '7383378706:AAEHT3fKEW7DT3AsV5JsqMxH5S00bzPaFZs'
 bot = Bot(token=API_TOKEN)
@@ -28,6 +31,30 @@ user_list = set()
 
 async def on_startup():
     await database.setup_database()
+
+
+user_list = set()  # Barcha foydalanuvchilar
+joined_users = set()  # Botga kirgan foydalanuvchilar
+left_users = set()  # Botdan chiqib ketgan foydalanuvchilar
+
+# Statistika komandasi
+@dp.message(Command('stat'))
+async def show_stats(message: types.Message):
+    if message.from_user.id != ADMIN_ID:
+        await message.answer("Siz admin emassiz.")
+        return
+
+    # Statistikani ko'rsatish
+    total_users = len(user_list)  # Foydalanuvchilar soni
+    joined = len(joined_users)  # Kirgan foydalanuvchilar soni
+    left = len(left_users)  # Chiqib ketgan foydalanuvchilar soni
+
+    # Statistika natijasi
+    stats_message = f"Botda jami foydalanuvchilar soni: {total_users}\n"
+    stats_message += f"Kirgan foydalanuvchilar soni: {joined}\n"
+    stats_message += f"Chiqib ketgan foydalanuvchilar soni: {left}"
+
+    await message.answer(stats_message)
 
 @dp.message(Command("start"))
 async def start(message: types.Message):
@@ -438,48 +465,27 @@ async def handle_feedback(message: types.Message, state: FSMContext):
 @dp.message(Command("reklama"))
 async def reklama(message: types.Message):
     if message.from_user.id != ADMIN_ID:
-        await message.reply_text("⛔ Sizda bu amalni bajarish huquqi yo‘q.")
+        await message.reply("⛔ Sizda bu amalni bajarish huquqi yo‘q.")
         return
 
     if not message.text.split()[1:]:
         await message.answer("ℹ️ Reklama matnini yozing. Masalan: /reklama Yangilik!")
         return
 
-    reklama_matni = " ".join(message.text.split()[1:])
+    reklama_matni = " ".join(message.text.split()[1:])  # Reklama matnini ajratib olish
+    user_ids = await get_all_user_ids()  # Bazadan foydalanuvchilarni olish
     count = 0
 
-    # Reklama yuborish
-    for user_id in user_list:
+    for user_id in user_ids:
         try:
             await bot.send_message(chat_id=user_id, text=reklama_matni)
             count += 1
-        except:
-            pass
+        except Exception as e:
+            print(f"❌ {user_id} ga yuborilmadi: {e}")  # Xatolikni konsolga chiqarish
+            continue
+
     await message.answer(f"✅ {count} ta foydalanuvchiga reklama yuborildi.")
 
-@dp.message(Command("stat"))
-async def send_stat(message: types.Message):
-    if message.from_user.id != ADMIN_ID:
-        await message.reply("⛔ Sizda bu amalni bajarish huquqi yo‘q.")
-        return
-
-    # Statistika olish
-    # Foydalanuvchi soni, fikrlar soni va boshqa ma'lumotlar
-    user_count = len(user_languages)  # Masalan, foydalanuvchi soni
-    feedback_count = 0  # Bu yerda siz feedbacklar sonini olishni xohlasangiz, o'zgartirishingiz mumkin.
-
-    # Database'dan boshqa ma'lumotlarni olish
-    # Misol uchun:
-    # feedback_count = await database.get_feedback_count()
-
-    stat_message = (
-        f"📊 Statistika:\n"
-        f"🧑‍💻 Foydalanuvchilar soni: {user_count}\n"
-        f"💬 Fikrlar soni: {feedback_count}\n"
-        # Qo'shimcha statistikani shu yerda qo'shish mumkin
-    )
-
-    await message.answer(stat_message)
 
 
 async def main():
