@@ -34,6 +34,7 @@ async def create_db():
             language TEXT
         );
         """)
+        
         await db.commit()
 
 async def insert_data():
@@ -237,6 +238,12 @@ async def insert_data():
 
         await db.commit()
 
+
+async def get_all_user_ids():
+    async with aiosqlite.connect(DB_NAME) as db:
+        cursor = await db.execute("SELECT user_id FROM users")  # Faqat barcha user_id larini olish
+        rows = await cursor.fetchall()
+        return [row[0] for row in rows]  # user_id larni ro'yxat sifatida qaytarish
 
 # 3. Foydalanuvchi tilini saqlash
 async def save_user_language(user_id: int, lang: str):
