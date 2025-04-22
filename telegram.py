@@ -6,6 +6,8 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.storage.memory import MemoryStorage
 
+
+
 storage = MemoryStorage()
 dp = Dispatcher(storage=storage)
 
@@ -32,10 +34,12 @@ user_list = set()
 async def on_startup():
     await database.setup_database()
 
-
 user_list = set()  # Barcha foydalanuvchilar
 joined_users = set()  # Botga kirgan foydalanuvchilar
 left_users = set()  # Botdan chiqib ketgan foydalanuvchilar
+
+
+
 
 # Statistika komandasi
 @dp.message(Command('stat'))
@@ -462,6 +466,9 @@ async def handle_feedback(message: types.Message, state: FSMContext):
     await state.clear()
 
     # Reklama yuborish
+
+from database import get_all_user_ids
+
 @dp.message(Command("reklama"))
 async def reklama(message: types.Message):
     if message.from_user.id != ADMIN_ID:
@@ -496,9 +503,7 @@ async def main():
     await dp.start_polling(bot)
 
 
-
 if __name__ == "__main__":
     asyncio.run(main())
-
 
 
